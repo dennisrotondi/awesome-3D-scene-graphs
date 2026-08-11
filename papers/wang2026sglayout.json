@@ -1,0 +1,14 @@
+{
+  "TITLE": "SG-Layout: Structured Scene Graph-Guided Layout Generation with LLMs",
+  "VENUE": "arXiv26",
+  "DATE": "2026/08/02",
+  "AUTHOR": "Junsheng Wang, Chao Chen, Mengying Xie, Mingyan Li, Fuqiang Gu",
+  "ABSTRACT": "Understanding and generating spatially coherent layouts from natural language remains a fundamental yet challenging task for large language models (LLMs). Existing LLMs often struggle to capture explicit geometric relationships and structural dependencies between objects. To address this issue, we propose SG-Layout, a graph-guided layout generation framework that explicitly incorporates structured spatial knowledge into LLMs. SG-Layout follows a two-stage training paradigm: (1) a graph-language feature alignment stage, where a relational graph encoder and a projector are trained to map scene-graph embeddings into the LLM's linguistic space; and (2) an instruction tuning stage, where LoRA-based adapters enable efficient fine-tuning for instruction-driven layout generation while keeping the backbone frozen. We evaluate SG-Layout on image layout generation, indoor scene synthesis and robotic object rearrangement tasks. Experimental results show that SG-Layout improves spatial reasoning accuracy and geometric consistency over the compact open-source backbone, with particularly clear advantages in relation-dense and compositionally complex scenes. These results highlight the effectiveness of graph-structured feature alignment for enhancing controllable layout generation.",
+  "ARXIV": "https://arxiv.org/pdf/2608.01106",
+  "FIRSTINSTITUTE": "Chongqing University",
+  "KEYWORD": "Application, Manipulation, LLM, Indoor",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{wang2026sglayout,\n  title = {SG-Layout: Structured Scene Graph-Guided Layout Generation with LLMs},\n  author = {Wang, Junsheng and Chen, Chao and Xie, Mengying and Li, Mingyan and Gu, Fuqiang},\n  year = {2026},\n  eprint = {2608.01106},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV}\n}"
+}
