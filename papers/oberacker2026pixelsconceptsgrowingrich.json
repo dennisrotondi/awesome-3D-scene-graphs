@@ -1,0 +1,14 @@
+{
+  "TITLE": "From Pixels to Concepts: Growing Rich 3D Semantic Scene Graph Forests utilizing Foundation Models",
+  "VENUE": "IROS26",
+  "DATE": "2026/06/22",
+  "AUTHOR": "David Oberacker, Meike Deitersen, Niklas Spielbauer, Tristan Schnell, Georg Heppner, Arne Roennau",
+  "ABSTRACT": "Operating in complex real-world environments requires robots to understand their surroundings on a functional semantic level. This demands a detailed multi-layer world model capturing the complex relations of its surroundings. Hierarchical 3D scene graphs address this challenge by integrating geometric, semantic, and relational data within a unified spatial framework. However, current 3D scene graph approaches often restrict themselves to rigid structures of pre-determined relationship classes, mostly neglecting important semantic connections, like causal connections or environmental contexts. This paper explores the potential of foundation models to build forests of 3D scene graphs with open semantic relationships to improve scene understanding and robotic task execution. We propose a method where instance-specific concept-nodes and relationships are first identified by a VLM and extended upon by a LLM, inferring broader, more abstract concept-nodes and relationships through reasoning. These object-nodes, concept-nodes, and relationships are then assembled into a forest of hierarchical 3D scene graphs, enhanced with concept-nodes to represent abstract concepts. Evaluations were conducted on the uHumans2 and ScanNet indoor dataset, validating the accuracy and relevance of the generated relationships. Downstream suitability of scene-graph forests for robotics applications is demonstrated in an open-vocabulary object-retrieval task utilizing both ScanNet data and a real-world indoor deployment using a Boston Dynamics Spot. This paper leverages foundation models to create more expressive, semantically deep 3D hierarchical scene graphs and demonstrates their potential to advance semantic and environmental understanding in robotics.",
+  "ARXIV": "https://arxiv.org/abs/2606.23312",
+  "FIRSTINSTITUTE": "FZI",
+  "KEYWORD": "Application, Manipulation, Navigation, LLM, Hierarchical, RGB-D, LiDAR, Open-Vocabulary",
+  "SITE": "",
+  "CODE": "https://github.com/fzi-forschungszentrum-informatik/semantic_scene_forests",
+  "VIDEO": "",
+  "BIBTEX": "@misc{oberacker2026pixelsconceptsgrowingrich,\n      title={From Pixels to Concepts: Growing Rich 3D Semantic Scene Graph Forests utilizing Foundation Models}, \n      author={David Oberacker and Meike Deitersen and Niklas Spielbauer and Tristan Schnell and Georg Heppner and Arne Roennau},\n      year={2026},\n      eprint={2606.23312},\n      archivePrefix={arXiv},\n      primaryClass={cs.RO},\n      url={https://arxiv.org/abs/2606.23312}, \n}"
+}
