@@ -1,0 +1,14 @@
+{
+  "TITLE": "GraphWrit3R: End-to-End 3D Scene Graph Writing",
+  "VENUE": "NeurIPS26",
+  "DATE": "2026/09/25",
+  "AUTHOR": "Luka Milivojevic, Nikola Popovic, Sayan Deb Sarkar, Sebastian Koch, Iro Armeni, Luc Van Gool, Danda Pani Paudel",
+  "ABSTRACT": "3D scene graphs provide a structured representation of complex environments by encoding objects, their semantic attributes, and the spatial and functional relationships between them. Current approaches for 3D scene graph generation suffer from several fundamental limitations. They rely on complex multi-stage pipelines with explicit intermediate representations, making systems fragile and prone to error propagation. They assume access to ground-truth object annotations during inference, which deviates from real-world scenarios. They depend on proprietary models, hindering open-source deployment, or incur prohibitively slow inference. We present GraphWrit3R, a simple end-to-end method that takes a 3D point cloud, Gaussian Splats, or a combination of both as input, and directly outputs a complete scene graph as a structured JSON script. The graph lists all objects, their semantic attributes, and the relationships between them, while avoiding all of the above mentioned limitations. The choice of multiple input modalities is purely for versatility, allowing a single set of weights to handle diverse scenarios. Point cloud inputs are encoded via Sonata and Gaussian Splat inputs via Chorus, with both modalities projected onto a shared voxel grid and fused through a novel per-voxel contrastive alignment loss before being decoded by a large language model. As a natural consequence of the LLM, GraphWrit3R also supports open-vocabulary querying. On the 3DSSG benchmark, our method achieves state-of-the-art performance on object class, predicate, and triplet recall, outperforming methods that rely on ground-truth object annotations during inference. We further provide qualitative results and analyze different input modality configurations, contrastive loss formulations, and token fusion strategies.",
+  "ARXIV": "https://arxiv.org/abs/2609.31595",
+  "FIRSTINSTITUTE": "INSAIT",
+  "KEYWORD": "Open-Vocabulary, Indoor, LLM, Pre-Built PCD",
+  "SITE": "https://graphwrit3r.insait.ai/",
+  "CODE": "https://github.com/insait-institute/GraphWrit3R",
+  "VIDEO": "",
+  "BIBTEX": "@inproceedings{milivojevic2026graphwrit3r,\n  title = {GraphWrit3R: End-to-End 3D Scene Graph Writing},\n  author = {Milivojevic, Luka and Popovic, Nikola and Deb Sarkar, Sayan and Koch, Sebastian and Armeni, Iro and Van Gool, Luc and Paudel, Danda Pani},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year = {2026}\n}"
+}
