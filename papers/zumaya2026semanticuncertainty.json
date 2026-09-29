@@ -1,0 +1,14 @@
+{
+  "TITLE": "Hierarchical Aggregation of Semantic Uncertainty in 3D Scene Graphs",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/17",
+  "AUTHOR": "Carlos Cueto Zumaya, Iacopo Catalano, Wallace Moreira Bessa, Julio A. Placed",
+  "ABSTRACT": "Open-vocabulary 3D Scene Graphs (3DSGs) ground each object node in a vision-language embedding, yet they record every entry as equally certain, so a robot querying the map cannot tell which of its entries are unreliable. Estimators of semantic uncertainty could supply that distinction, but they require repeated sampling of a model, training, or held-out labels, none of which are available to a deployed system at query time. We present a framework that exploits the detector confidence and the embeddings a 3DSG already stores, converts them into a probability that an entry is correct, and propagates that probability through the containment hierarchy into a belief that a room contains a queried class. Four signals, each paired with the object-level error it indicates, are converted to probabilities at the logit scale learned by the vision-language model and combined in closed form with no additional perception or training. Objects sharing a detector and a vocabulary fail together, so the framework aggregates them in the fully correlated limit, where an aggregation under independence would treat one repeated error as repeated evidence. Evaluated on HM3DSem against a state-of-the-art 3DSG system, the framework improves object retrieval and lowers the error of the room-level assertions of the graph it reads.",
+  "ARXIV": "https://arxiv.org/abs/2609.22351",
+  "FIRSTINSTITUTE": "UTU",
+  "KEYWORD": "Application, Open-Vocabulary, SUN, Indoor, Hierarchical",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{zumaya2026semanticuncertainty,\n  title = {Hierarchical Aggregation of Semantic Uncertainty in 3D Scene Graphs},\n  author = {Zumaya, Carlos Cueto and Catalano, Iacopo and Bessa, Wallace Moreira and Placed, Julio A.},\n  year = {2026},\n  eprint = {2609.22351},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV}\n}"
+}
