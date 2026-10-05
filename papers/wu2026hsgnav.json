@@ -1,0 +1,14 @@
+{
+  "TITLE": "Hierarchical 3D Scene Graph Construction and Belief-based Planning for Semantic Navigation",
+  "VENUE": "ECCV26",
+  "DATE": "2026/06/30",
+  "AUTHOR": "Bing Wu, Zuyao Chen, Changwen Chen",
+  "ABSTRACT": "Semantic navigation is a fundamental task for embodied agents operating in unseen environments, requiring both semantic understanding and long-term decision-making. Recent foundation models have empowered agents with rich semantic priors for this task. However, without structured global representations, decision-making often falls back on local observations and greedy strategies, resulting in inefficient exploration and myopic behaviors, especially in long-distance navigation. To address these challenges, we propose a zero-shot semantic navigation framework. Our method incrementally maintains an online Hierarchical 3D Scene Graph (HSG) to form a multi-granular semantic topology over objects, zones, and regions, serving as a compact state abstraction for global planning. Building on this memory, we introduce a hierarchical belief-based planning framework that fuses semantic priors with exploration evidence on the HSG, and performs finite-horizon rollouts on an HSG-based simulator to explicitly estimate the long-term expected returns of candidate macro-actions. This enables globally consistent decisions and reduces redundant backtracking. Extensive experiments in high-fidelity simulation environments across multiple tasks and datasets demonstrate that our method outperforms existing state-of-the-art methods, particularly in long-distance scenarios, where our approach improves SR and SPL by an average of 9.4\\% and 5.0\\%, respectively.",
+  "ARXIV": "https://arxiv.org/abs/2606.31071",
+  "FIRSTINSTITUTE": "PolyU",
+  "KEYWORD": "Navigation, Planning, Hierarchical, Indoor, Incremental, RGB-D",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@inproceedings{wu2026hsgnav,\n  title = {Hierarchical 3D Scene Graph Construction and Belief-based Planning for Semantic Navigation},\n  author = {Wu, Bing and Chen, Zuyao and Chen, Changwen},\n  booktitle = {European Conf. on Computer Vision (ECCV)},\n  year = {2026}\n}"
+}
