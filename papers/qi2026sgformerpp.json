@@ -1,0 +1,14 @@
+{
+  "TITLE": "SGFormer++: Semantic Graph Transformer for Incremental 3D Scene Graph Generation",
+  "VENUE": "arXiv26",
+  "DATE": "2026/06/13",
+  "AUTHOR": "Mengshi Qi, Changsheng Lv, Zijian Fu, Xianlin Zhang, Huadong Ma",
+  "ABSTRACT": "In this paper, we propose SGFormer++, a novel Semantic Graph Transformer for 3D scene graph generation (SGG), which aims to parse point cloud scenes into semantic structural graphs, where nodes denote detected object instances and edges encode their pairwise relationships, with the core challenge lying in modeling complex global scene structure. While existing graph convolutional network (GCN)-based methods suffer from over-smoothing and limited receptive fields, SGFormer++ leverages Transformer layers as its backbone to enable global message passing. Specifically, we introduce two key components tailored for 3D SGG: (1) a Graph Embedding Layer++ that efficiently integrates edge-aware global context with linear computational complexity, and (2) a Semantic Injection Layer++ that enriches visual features with linguistic priors from large language models (LLMs) and vision-language models (VLMs), boosting semantic representation without introducing extra trainable parameters. To further address the practical challenge of incremental SGG (I-SGG), where new relationship categories arrive sequentially, we equip SGFormer++ with a novel Spatial-guided Feature Adapter, which calibrates predicate features using subject-object spatial geometry to counter scale variation, and a Cascaded Binary Prediction Head that mitigates catastrophic forgetting via task-incremental classifier expansion and logit distillation. Extensive experiments on the 3DSSG benchmark demonstrate that SGFormer++ achieves state-of-the-art performance in both standard and incremental settings: it yields a significant 4.49% absolute improvement in Predicate A@1 under the incremental setting. Code and data are available at: https://github.com/Andy20178/SGFormer.",
+  "ARXIV": "https://arxiv.org/abs/2606.15328",
+  "FIRSTINSTITUTE": "BUPT",
+  "KEYWORD": "SUN, Indoor, LLM, Pre-Built PCD",
+  "SITE": "",
+  "CODE": "https://github.com/Andy20178/SGFormer",
+  "VIDEO": "",
+  "BIBTEX": "@misc{qi2026sgformerpp,\n  title = {SGFormer++: Semantic Graph Transformer for Incremental 3D Scene Graph Generation},\n  author = {Qi, Mengshi and Lv, Changsheng and Fu, Zijian and Zhang, Xianlin and Ma, Huadong},\n  year = {2026},\n  eprint = {2606.15328},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV}\n}"
+}
