@@ -1,0 +1,14 @@
+{
+  "TITLE": "Concept-Guided Exploration: Building Persistent, Actionable Scene Graphs",
+  "VENUE": "arXiv26",
+  "DATE": "2026/08/24",
+  "AUTHOR": "Noé Zapata, Gerardo Pérez, Alejandro Torrejón, Pedro Núñez, Pablo Bustos",
+  "ABSTRACT": "The perception of 3D space by mobile robots is rapidly moving from flat metric grid representations to hybrid metric-semantic graphs built from human-interpretable concepts. While most approaches first build metric maps and then add semantic layers, we explore an alternative, concept-first architecture in which spatial understanding emerges from asynchronous concept agents that directly instantiate and manage semantic entities. Our robot employs two spatial concepts (room and door), implemented as autonomous processes within a cognitive distributed architecture. These concept agents cooperatively build a shared scene graph representation of indoor layouts through active exploration and incremental validation. The key architectural principle is hierarchical constraint propagation: Room instantiation provides geometric and semantic priors to guide and support door detection within wall boundaries. The resulting structure is maintained by a complementary functional principle based on prediction-matching loops. This approach is designed to yield an actionable, human-interpretable spatial representation without relying on any pre-existing global metric map, supporting scalable operation and persistent, task-relevant understanding in structured indoor environments.",
+  "ARXIV": "https://arxiv.org/abs/2608.23650",
+  "FIRSTINSTITUTE": "UEx",
+  "KEYWORD": "Active, Hierarchical, Incremental, Indoor",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{zapata2026conceptguided,\n  title = {Concept-Guided Exploration: Building Persistent, Actionable Scene Graphs},\n  author = {Zapata, Noé and Pérez, Gerardo and Torrejón, Alejandro and Núñez, Pedro and Bustos, Pablo},\n  year = {2026},\n  eprint = {2608.23650},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
