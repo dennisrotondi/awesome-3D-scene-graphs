@@ -1,0 +1,14 @@
+{
+  "TITLE": "Yggdrasil: a Layer-First 3D Scene Graph for Real-Time Querying",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/29",
+  "AUTHOR": "Arshia Akhavan, Ermanno Bartoli, Afnan Algharbi, Alireza Hoseinpur, Iolanda Leite, Bryan Donyanavard",
+  "ABSTRACT": "Robotic agents use 3D scene graphs (3DSG) to perform tasks ranging from scene understanding to scene interaction. Although an extensive body of work addresses scene graph generation, little attention has been paid to optimizing the graph for consumption, which leaves state-of-the-art perception pipelines to work around their own scene graph and to pay a latency cost that does not fit the real-time budget a perception loop runs on. We present Yggdrasil, the first 3D scene graph designed to be efficient for both generation and consumption: a layer-first hierarchical graph built from generic nodes, edges, and layers, which expresses the representations existing pipelines already produce, indoor or outdoor, flat or hierarchical, while natively answering the positional and semantic queries downstream tasks issue. Against a published DSG baseline, Yggdrasil answers queries up to $121\\times$ faster, and every query we measure falls between 2 and 127 microseconds, three to five orders of magnitude inside the 200 microsecond keyframe budget a 3DSG consumer lives in, on both a workstation and embedded class device. We integrate Yggdrasil into three published pipelines spanning human trajectory prediction, object-goal navigation, and human-aware motion planning, where it removes up to 99% of the time each spends on its scene graph. The implementation, benchmark harness, and all three integrations are available online.",
+  "ARXIV": "https://arxiv.org/abs/2609.38640",
+  "FIRSTINSTITUTE": "SDSU",
+  "KEYWORD": "Application, Hierarchical, Real-Time, Indoor, Outdoor",
+  "SITE": "",
+  "CODE": "https://github.com/brdsdsu/yggdrasil",
+  "VIDEO": "",
+  "BIBTEX": "@misc{akhavan2026yggdrasil,\n  title = {Yggdrasil: a Layer-First 3D Scene Graph for Real-Time Querying},\n  author = {Akhavan, Arshia and Bartoli, Ermanno and Algharbi, Afnan and Hoseinpur, Alireza and Leite, Iolanda and Donyanavard, Bryan},\n  year = {2026},\n  eprint = {2609.38640},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
