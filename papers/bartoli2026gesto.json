@@ -1,0 +1,14 @@
+{
+  "TITLE": "GESTO: Human-Centric Spatio-Temporal Memory for Reasoning in Dynamic Scenes",
+  "VENUE": "arXiv26",
+  "DATE": "2026/08/11",
+  "AUTHOR": "Ermanno Bartoli, Buwei He, Dennis Rotondi, Sebastian Koch, Federico Tombari, Kai O. Arras, Patric Jensfelt, Yixi Cai, Iolanda Leite",
+  "ABSTRACT": "Robots operating in human environments need memories that capture not only what objects exist and where, but also how people use them over time and how individual interactions compose into goal-directed activities. Existing 4D scene graphs preserve object and place histories but omit activity structure, whereas activity representations are either not grounded in persistent 3D scenes or rely on externally provided event boundaries and object associations. We present GESTO (Grounded Event and Spatio-Temporal memOry), a spatio-temporal memory that couples a persistent 4D scene graph with a two-level hierarchy of atomic human--object interactions and goal-driven events. From an RGB-D observation stream, GESTO automatically extracts timestamped interactions, grounds them to persistent scene entities, groups them into events, and uses event context to refine uncertain object associations. A relation-aware tool-calling agent queries the resulting memory for activity-centric spatio-temporal reasoning. We evaluate GESTO on the reproducible text, binary, and time categories of an existing benchmark, together with 40 new Space2Event and Event2Space queries. GESTO achieves scores of 0.71, 0.75, and 0.70 on the standard categories, approaching a method supplied with ground-truth event and object grounding, while substantially outperforming the same reasoning framework when these inputs are removed. It further achieves 0.73 and 0.75 on Space2Event and Event2Space queries. Ablations show that hierarchical event structure and context-aware grounding refinement provide complementary benefits, supporting activity-grounded hierarchical memory for retrospective reasoning in dynamic human environments.",
+  "ARXIV": "https://arxiv.org/abs/2608.10886",
+  "FIRSTINSTITUTE": "KTH",
+  "KEYWORD": "SUN, LLM, Humans, Hierarchical, Short-Term Dynamics, Indoor, RGB-D",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{bartoli2026gesto,\n  title = {GESTO: Human-Centric Spatio-Temporal Memory for Reasoning in Dynamic Scenes},\n  author = {Bartoli, Ermanno and He, Buwei and Rotondi, Dennis and Koch, Sebastian and Tombari, Federico and Arras, Kai O. and Jensfelt, Patric and Cai, Yixi and Leite, Iolanda},\n  year = {2026},\n  eprint = {2608.10886},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV}\n}"
+}
