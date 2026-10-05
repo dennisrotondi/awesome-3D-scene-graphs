@@ -1,0 +1,14 @@
+{
+  "TITLE": "OpenBelief-Nav: Evidence-Preserving Object Memory for Open-Vocabulary Language-Guided Navigation",
+  "VENUE": "arXiv26",
+  "DATE": "2026/08/14",
+  "AUTHOR": "Dinh Tuan Nguyen, Anh Dao, Phuong Nam Dang, Quan-Dung Pham, Tuyen P. Le, Truong Nguyen, Quan Nguyen",
+  "ABSTRACT": "Open-vocabulary 3D scene graphs provide compact semantic memory for language-guided navigation, but mapped objects are often exposed through a single fused feature or committed semantic label. Such commitment can remove minority yet task-relevant hypotheses from the task-time interface. We present OpenBelief-Nav, an evidence-preserving object memory that retains observation-level phrases, reliability cues, and frame-mask provenance while maintaining separate aggregate geometric and visual representations. Semantically related phrases are consolidated into a vocabulary-independent object belief from which task-specific readouts perform fixed-vocabulary projection or free-form retrieval. On five ScanNet200 and eight Replica scenes, full-belief projection achieves mIoU scores of 0.2742 and 0.2912, compared with 0.2393 and 0.2701 for a matched early-commit readout. Across 78 HM3D-YCB navigation trials, consensus and early-commit retrieval each achieve 60/78 successes, compared with 58/78 for belief-weighted retrieval and 55/78 for DualMap. Across 20 Unitree G1 runs organized as 10 matched evaluation cases, a correction policy permitting at most two verified candidate attempts improves target-confirmation success from 6/10 to 8/10 relative to top-1-only execution. Code will be released upon acceptance at https://openbelief-nav.github.io/.",
+  "ARXIV": "https://arxiv.org/abs/2608.13923",
+  "FIRSTINSTITUTE": "VinMotion",
+  "KEYWORD": "Application, Navigation, Open-Vocabulary, Indoor, RGB-D",
+  "SITE": "https://openbelief-nav.github.io/",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{nguyen2026openbeliefnav,\n  title = {OpenBelief-Nav: Evidence-Preserving Object Memory for Open-Vocabulary Language-Guided Navigation},\n  author = {Nguyen, Dinh Tuan and Dao, Anh and Dang, Phuong Nam and Pham, Quan-Dung and Le, Tuyen P. and Nguyen, Truong and Nguyen, Quan},\n  year = {2026},\n  eprint = {2608.13923},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV}\n}"
+}
