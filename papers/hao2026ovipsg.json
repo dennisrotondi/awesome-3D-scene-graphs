@@ -1,0 +1,14 @@
+{
+  "TITLE": "OVIP-SG: Open-Vocabulary Instance-Preserving Scene Graphs for Mapping and Retrieval of Small, Fine-Grained Objects",
+  "VENUE": "arXiv26",
+  "DATE": "2026/08/18",
+  "AUTHOR": "Tianjing Hao, Haiyu Lan, Angsong Li, Cheng Chen, Enyu Li, Jiarui Yang, Yuning Su, Peiwen Lin, Wang Chuang",
+  "ABSTRACT": "Integrating open-vocabulary perception into object-level 3D scene graphs is a double-edged sword. While vision-language detectors recover long-tail categories and small, fine-grained objects overlooked by closed-set models, they also tend to fragment large surfaces and merge small objects into larger neighboring objects, compromising instance-level consistency and undermining mapping fidelity. Moreover, existing methods struggle to retrieve previously unmapped targets or determine whether a queried object is absent, hindering robust embodied open-world navigation and exploration. We present OVIP-SG, a unified framework for instance-preserving semantic mapping, functional scene partitioning, and language-guided small, fine-grained object retrieval. OVIP-SG uses a vision-language model (VLM) to enumerate scene-specific categories for robust open-world detection. Symmetric 3D Intersection over Union (IoU) association and area-weighted feature fusion preserve small independent instances, while VLM-inferred object functions partition scenes into compact functional search regions. A four-stage cascaded retrieval pipeline further incorporates voxel voting and determines target absence from exploration coverage. Under a unified evaluation protocol on Replica, OVIP-SG outperforms ConceptGraphs by 6.31 points in class-mean accuracy (mAcc) and 5.15 points in frequency-weighted mIoU (F-mIoU) while achieving a class-agnostic native-instance Panoptic Quality (PQ) of 0.398. It reduces the search area to 21.8% of the indoor floor space and reaches 0.773 balanced accuracy for object-presence classification. Real-world robotic experiments further demonstrate its practical effectiveness. Code is available at https://github.com/Agibot-Spatial-Intelligence/OVIP-SG.",
+  "ARXIV": "https://arxiv.org/abs/2608.17633",
+  "FIRSTINSTITUTE": "XJTU",
+  "KEYWORD": "Application, Navigation, Open-Vocabulary, LLM, SUN, Indoor, RGB-D",
+  "SITE": "",
+  "CODE": "https://github.com/Agibot-Spatial-Intelligence/OVIP-SG",
+  "VIDEO": "",
+  "BIBTEX": "@misc{hao2026ovipsg,\n  title = {OVIP-SG: Open-Vocabulary Instance-Preserving Scene Graphs for Mapping and Retrieval of Small, Fine-Grained Objects},\n  author = {Hao, Tianjing and Lan, Haiyu and Li, Angsong and Chen, Cheng and Li, Enyu and Yang, Jiarui and Su, Yuning and Lin, Peiwen and Chuang, Wang},\n  year = {2026},\n  eprint = {2608.17633},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
