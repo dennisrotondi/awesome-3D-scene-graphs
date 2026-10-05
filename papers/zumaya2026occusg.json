@@ -1,0 +1,14 @@
+{
+  "TITLE": "Occupancy-Grounded Room Segmentation for Hierarchical 3D Scene Graphs",
+  "VENUE": "arXiv26",
+  "DATE": "2026/06/11",
+  "AUTHOR": "Carlos Cueto Zumaya, Iacopo Catalano, Jorge Peña-Queralta, Wallace Moreira Bessa",
+  "ABSTRACT": "Hierarchical 3D scene graphs (3DSGs) for indoor robots organize geometric and semantic information across spatial scales, with a room layer that connects object-level perception to room-scale reasoning. Existing systems construct this layer from different spatial substrates (\\eg{} place clusters, wall planes, or segmentation outputs), and as a result, room nodes are not evaluated on a common geometric criterion. We present an occupancy-grounded 3DSG pipeline in which room nodes are anchored to tracked free-space regions derived from occupancy decomposition, giving each room an explicit polygonal footprint. We evaluate the pipeline on 12 Matterport3D scenes by matching predicted room polygons to annotated room instances and compare against Hydra, a representative state-of-the-art place-connectivity baseline. The results show that occupancy-grounded anchoring recovers substantially more room instances than place-connectivity construction, at the cost of lower precision, and that wall-accurate room boundaries remain an open problem for both methods. Code is available at https://github.com/crcz25/OccuSG.",
+  "ARXIV": "https://arxiv.org/abs/2606.13727",
+  "FIRSTINSTITUTE": "UTU",
+  "KEYWORD": "Hierarchical, Indoor, SUN, RGB-D",
+  "SITE": "",
+  "CODE": "https://github.com/crcz25/OccuSG",
+  "VIDEO": "",
+  "BIBTEX": "@misc{zumaya2026occusg,\n  title = {Occupancy-Grounded Room Segmentation for Hierarchical 3D Scene Graphs},\n  author = {Cueto Zumaya, Carlos and Catalano, Iacopo and Peña-Queralta, Jorge and Moreira Bessa, Wallace},\n  year = {2026},\n  eprint = {2606.13727},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
