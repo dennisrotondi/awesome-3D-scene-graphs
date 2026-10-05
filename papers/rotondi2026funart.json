@@ -1,0 +1,14 @@
+{
+  "TITLE": "FunArt: Decoding Functional Structure and Articulation from Generative 3D Latents",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/17",
+  "AUTHOR": "Dennis Rotondi, Abdelrhman Werby, Kai O. Arras",
+  "ABSTRACT": "To operate effectively in human environments, robots must identify articulated objects, segment their movable and interactive parts, and estimate their kinematic models. Existing articulated scene representations typically recover kinematics from observed interactions, while methods operating on static scans often decouple articulation from functional interactive elements. We present FunArt, a framework that constructs articulation-aware functional 3D scene graphs from posed RGB-D observations captured in a single static configuration. FunArt reconstructs object instances, converts their fused geometry directly into the O-Voxel representation of TRELLIS.2, and exploits its frozen, sparse-compression VAE as a structural prior. A lightweight query-based decoder combines compact object-level latents with dense, surface-aligned features to jointly segment movable parts and functional interactive elements while estimating motion type, axis, origin, and range. On the Articulate3D dataset, FunArt achieves state-of-the-art performance across movable-part segmentation, articulation estimation, and functional-element segmentation, both with and without ground-truth object input. In the end-to-end setting, it outperforms the strongest baselines by 1.5 AP_{50} points for movable parts, 2.8 AP_{50} points under joint origin-and-axis constraints, and 6.7 AP_{50} points for functional elements. These results demonstrate that generative 3D latents encode actionable structural cues that can initialize robotic perception and planning before physical interaction.",
+  "ARXIV": "https://arxiv.org/abs/2609.20673",
+  "FIRSTINSTITUTE": "UniStuttgart",
+  "KEYWORD": "SUN, Manipulation, Indoor, RGB-D",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{rotondi2026funart,\n  title = {FunArt: Decoding Functional Structure and Articulation from Generative 3D Latents},\n  author = {Rotondi, Dennis and Werby, Abdelrhman and Arras, Kai O.},\n  year = {2026},\n  eprint = {2609.20673},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV}\n}"
+}
