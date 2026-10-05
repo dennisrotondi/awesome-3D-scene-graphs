@@ -1,0 +1,14 @@
+{
+  "TITLE": "Probabilistic Scene Graphs: Hierarchical Representation and Real-time System",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/19",
+  "AUTHOR": "Waqas Ali, Michele Antonazzi, Timon Homberger, Thien-Minh Nguyen, Lukas Rosenberger Schmid, Patric Jensfelt, Yixi Cai",
+  "ABSTRACT": "3D scene graphs provide semantically rich and hierarchical representations for robot perception. However, existing systems do not maintain uncertainty as an explicit belief or propagate it through the operations that construct and refine the graph. We introduce Probabilistic Scene Graph (PSG), a generalization of the conventional scene graph that represents a posterior over possible graphs, factorized into a discrete graph structure of entities, relations, and semantic attributes, and continuous states that ground them spatially, with uncertainty maintained over both components. Geometry is carried directly by the nodes rather than selected from a separately constructed metric map, so a metric map, where needed, follows from the graph rather than preceding it. We instantiate PSG's probabilistic spatial grounding with hierarchical graphs of Gaussians (HGG): each object primitive is represented by a full-covariance Gaussian under a Normal-Inverse-Wishart belief, and the same parametrization applied recursively within a node yields a geometry graph that resolves its surface at finer resolution. We then build a mapping pipeline that preserves these beliefs throughout graph construction and refinement: a purely graph-based coarse-to-fine alignment registers observations by comparing node beliefs, while a nested Expectation-Maximization and factor-graph optimization jointly refines poses, object parameters, and internal geometry. Across six datasets spanning indoor RGB-D, outdoor LiDAR, and cross-modality deployment, HGG operates at sensor rate with near-constant memory and achieves state-of-the-art object accuracy and zero-shot graph alignment.",
+  "ARXIV": "https://arxiv.org/abs/2609.23144",
+  "FIRSTINSTITUTE": "KTH",
+  "KEYWORD": "SLAM, Hierarchical, Incremental, Real-Time, Indoor, Outdoor, RGB-D, LiDAR",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{ali2026psg,\n  title = {Probabilistic Scene Graphs: Hierarchical Representation and Real-time System},\n  author = {Ali, Waqas and Antonazzi, Michele and Homberger, Timon and Nguyen, Thien-Minh and Rosenberger Schmid, Lukas and Jensfelt, Patric and Cai, Yixi},\n  year = {2026},\n  eprint = {2609.23144},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
