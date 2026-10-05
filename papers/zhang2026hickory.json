@@ -1,0 +1,14 @@
+{
+  "TITLE": "Hierarchical Object Representation for Spatial Robot Perception: Points, Meshes, and Superquadrics",
+  "VENUE": "arXiv26",
+  "DATE": "2026/06/01",
+  "AUTHOR": "Ceng Zhang, Wan Su, Mohamed Samshad, Gregory S. Chirikjian, Rajat Talak",
+  "ABSTRACT": "Hierarchical 3D Scene Graphs (3DSG) have emerged as an actionable and scalable representation for long-term autonomy incorporating metric, semantic, and topological information in the scene. However, the question of geometric representation of objects in 3DSG has been overlooked as most methods use simplified geometric models such as partial point clouds or 3D bounding boxes. In this work, we introduce a hierarchical object representation that can be leveraged for high-fidelity object-level reconstruction, object-based robust re-localization or map alignment, and efficient and analytical collision checking for safe robot navigation planning in dense and cluttered environments. The representation is structurally organized into four distinct layers, progressively abstracting the scene from raw sensor data to dense 3D meshes to analytical primitives such as superquadrics, which provide a sparse and analytical representation for object geometry. We develop a pipeline that builds the hierarchical object representation from RGB-D image stream captured by a robot, and demonstrate its working in real-world open-set object scenes in both indoor and outdoor environments. Extensive experiments across diverse datasets including HOPE, ReplicaCAD, Kimera-Multi, and NUS Campus Dataset collected using Unitree B2 Robot validate our pipeline in both indoor and outdoor environments. We show that our superquadric-based map alignment method outperforms the current state-of-the-art object based map alignment method ROMAN. Our code can be found at https://github.com/perceptica-robotics/Hickory.",
+  "ARXIV": "https://arxiv.org/abs/2606.01545",
+  "FIRSTINSTITUTE": "NUS",
+  "KEYWORD": "Application, Navigation, Hierarchical, Indoor, Outdoor, RGB-D, Open-Vocabulary",
+  "SITE": "",
+  "CODE": "https://github.com/perceptica-robotics/Hickory",
+  "VIDEO": "",
+  "BIBTEX": "@misc{zhang2026hickory,\n  title = {Hierarchical Object Representation for Spatial Robot Perception: Points, Meshes, and Superquadrics},\n  author = {Zhang, Ceng and Su, Wan and Samshad, Mohamed and Chirikjian, Gregory S. and Talak, Rajat},\n  year = {2026},\n  eprint = {2606.01545},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
