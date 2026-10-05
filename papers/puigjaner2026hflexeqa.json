@@ -1,0 +1,14 @@
+{
+  "TITLE": "Hierarchical Floorplan-Guided Vision-Language Exploration for Embodied Question Answering",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/22",
+  "AUTHOR": "Albert Gassol Puigjaner, Kostas Alexis",
+  "ABSTRACT": "Embodied Question Answering (EQA) requires an agent to explore a previously unseen environment, gather relevant information, and answer questions about the scene. Recent approaches leverage Vision-Language Models (VLMs) together with semantic maps or scene graphs to guide exploration. However, exploration is typically driven only by local observations, while structural priors about the environment remain largely unused. We propose HFLEX-EQA, a hierarchical EQA framework that combines online scene graph construction, VLM- based planning, semantic frontier exploration, and floorplan priors. The system incrementally builds a hierarchical scene graph and an open-vocabulary occupancy map from RGB-D observations, enabling a VLM to jointly reason over the scene graph, task-relevant visual observations, exploration history, and an estimated topological floorplan. Furthermore, we introduce a room-discovery strategy that leverages the floorplan and open-vocabulary frontier semantics to guide exploration toward semantically relevant yet currently unobserved room types. We evaluate HFLEX-EQA on the OpenEQA and ExploreEQA benchmarks and demonstrate deployment on a quadruped robot in real indoor environments. Our results demonstrate the benefit of combining VLM-based hierarchical planning with structural floorplan priors for the EQA task.",
+  "ARXIV": "https://arxiv.org/abs/2609.26360",
+  "FIRSTINSTITUTE": "NTNU",
+  "KEYWORD": "Application, Navigation, Active, LLM, Hierarchical, Incremental, Open-Vocabulary, Indoor, RGB-D",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{puigjaner2026hflexeqa,\n  title = {Hierarchical Floorplan-Guided Vision-Language Exploration for Embodied Question Answering},\n  author = {Gassol Puigjaner, Albert and Alexis, Kostas},\n  year = {2026},\n  eprint = {2609.26360},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
