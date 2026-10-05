@@ -1,0 +1,14 @@
+{
+  "TITLE": "ChronoGraph: Functional 4D Scene Graphs with Vision-Language Models for Interaction Understanding and Grounded Planning",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/30",
+  "AUTHOR": "Chenyangguang Zhang, Malgorzata Gwiazda, Guanlong Jiao, Yuanchen Ju, Federico Tombari, Koushil Sreenath, Marc Pollefeys, Sunghwan Hong",
+  "ABSTRACT": "Embodied agents must determine where to act, anticipate the resulting scene changes, and interpret observed outcomes to guide subsequent actions. This requires connecting 4D interaction understanding, which explains how past actions changed the scene, with spatially grounded planning, which determines how and where to act toward a goal and anticipates the resulting scene changes. We introduce ChronoGraph, a functional 4D scene graph that links actions on affordance parts to semantic and geometric state changes. By representing observed and anticipated transitions in the same form, it provides a shared basis for understanding and planning. We construct ChronoGraphBench through an automatic data engine that converts human-interaction videos and simulated robot trajectories into graph-annotated questions for training and evaluating Vision-Language Models (VLMs) on both tasks. Using these annotations, we train ChronoGraphVLM by adapting pretrained VLMs in two stages. Graph-as-Chain-of-Thought supervised fine-tuning teaches the models to reconstruct observed transitions and predict future ones as graph traces before answering. Subsequent joint 4D graph reinforcement learning directly rewards graph properties and answer correctness. Experiments across model scales show improvements over the corresponding pretrained baselines and zero-shot transfer to VLM4D. Real-world demonstrations further show that graph-based planning and affordance grounding support mobile manipulation through existing robot skills without additional fine-tuning.",
+  "ARXIV": "https://arxiv.org/abs/2609.39665",
+  "FIRSTINSTITUTE": "ETH",
+  "KEYWORD": "Planning, Manipulation, LLM, Short-Term Dynamics, Humans, Dataset, Indoor",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{zhang2026chronograph,\n  title = {ChronoGraph: Functional 4D Scene Graphs with Vision-Language Models for Interaction Understanding and Grounded Planning},\n  author = {Zhang, Chenyangguang and Gwiazda, Malgorzata and Jiao, Guanlong and Ju, Yuanchen and Tombari, Federico and Sreenath, Koushil and Pollefeys, Marc and Hong, Sunghwan},\n  year = {2026},\n  eprint = {2609.39665},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI}\n}"
+}
