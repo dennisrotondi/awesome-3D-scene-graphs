@@ -1,0 +1,14 @@
+{
+  "TITLE": "Generation of High-Level Concepts in 3D Scene Graphs via Autoregressive Diffusion",
+  "VENUE": "arXiv26",
+  "DATE": "2026/08/28",
+  "AUTHOR": "Jose Andres Millan-Romera, Samuel Cognolato, Holger Voos, Jose Luis Sanchez-Lopez, Luciano Serafini",
+  "ABSTRACT": "Indoor 3D Scene Graphs (3DSGs) represent environments as multi-layer hierarchies that connect observed geometric primitives (e.g., planes) to higher-level metric-semantic concepts (e.g., rooms, floors, buildings), enabling incremental spatial reasoning for robotic perception and SLAM. However, classical high-level concept generation approaches rely on hand-crafted rules for specific concept classes, while learning-based methods require separate models for graph structure and spatial node features (e.g., centroids), which limits scalability to novel classes and more complex hierarchies. We propose a unified autoregressive diffusion-based graph generative model that jointly learns structure and features, constructing complete 3DSGs bottom-up from observed vertical planes across arbitrary hierarchy depths. Our method consistently surpasses all learning-based and random baselines across 3DSG datasets spanning synthetic scenes, real architectural floor plans, and robotic sensor data, with varying layout complexity and hierarchy depth, and surpasses a one-shot model with oracle access to the target graph size on the largest hierarchy and on real single-floor data. Finally, we propose an adaptation of the Fused Gromov--Wasserstein distance for principled graph-level evaluation of generated 3DSGs against ground truth.",
+  "ARXIV": "https://arxiv.org/abs/2608.28733",
+  "FIRSTINSTITUTE": "UniLu",
+  "KEYWORD": "SUN, Hierarchical, Indoor",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{millanromera2026highlevel,\n  title = {Generation of High-Level Concepts in 3D Scene Graphs via Autoregressive Diffusion},\n  author = {Millan-Romera, Jose Andres and Cognolato, Samuel and Voos, Holger and Sanchez-Lopez, Jose Luis and Serafini, Luciano},\n  year = {2026},\n  eprint = {2608.28733},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
