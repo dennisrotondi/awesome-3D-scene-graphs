@@ -1,0 +1,14 @@
+{
+  "TITLE": "Functional-SLAM: Interaction-Aware Mapping with Online Functional Scene Graphs",
+  "VENUE": "CoRL26",
+  "DATE": "2026/09/07",
+  "AUTHOR": "Xinggang Hu, Chenyangguang Zhang, Zihan Zhu, Ruida Zhang, Xiangkui Zhang, Xiangyang Ji",
+  "ABSTRACT": "Existing SLAM systems lack modeling of the functional relations required for fine-grained robotic interaction. Functional 3D scene graphs can represent relations between objects and interaction elements, but existing methods rely on offline reconstruction, making them inadequate for real-time interaction in real-world exploration. To address this limitation, we propose Functional-SLAM, the first framework that continuously and recursively maintains a functional scene graph as an online SLAM state. The framework combines anchor-keyframe geometry with functional-context constraints for persistent node maintenance, accumulates multi-frame evidence through temporal relations to commit stable functional edges, and supplements visual loop-closure candidates with functional topology in scenes with repetitive appearance or degraded texture. Experiments show that Functional-SLAM efficiently constructs stable functional maps online, substantially improving runtime over offline methods while maintaining highly competitive accuracy. Compared with peer SLAM systems, it further improves pose estimation accuracy through functional-topology-assisted loop closure. The code is publicly available at https://github.com/Hbelief1998/Functional-SLAM-CoRL_2026.",
+  "ARXIV": "https://arxiv.org/abs/2609.07497",
+  "FIRSTINSTITUTE": "THU",
+  "KEYWORD": "SLAM, SUN, Incremental, Indoor, RGB-D",
+  "SITE": "",
+  "CODE": "https://github.com/Hbelief1998/Functional-SLAM-CoRL_2026",
+  "VIDEO": "",
+  "BIBTEX": "@inproceedings{hu2026functionalslam,\n  title = {Functional-SLAM: Interaction-Aware Mapping with Online Functional Scene Graphs},\n  author = {Hu, Xinggang and Zhang, Chenyangguang and Zhu, Zihan and Zhang, Ruida and Zhang, Xiangkui and Ji, Xiangyang},\n  booktitle = {Conf. on Robot Learning (CoRL)},\n  year = {2026}\n}"
+}
