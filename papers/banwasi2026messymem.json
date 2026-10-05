@@ -1,0 +1,14 @@
+{
+  "TITLE": "MessyMem: Learning-from-Doing Memory for Mobile Manipulation",
+  "VENUE": "CoRL26",
+  "DATE": "2026/09/14",
+  "AUTHOR": "Anuva Banwasi, William Muckelroy, Priya Sundaresan, Linfeng Zhao, Jeannette Bohg, Cherie Ho",
+  "ABSTRACT": "Mobile manipulators deployed across many rooms and visits should improve with experience: after discovering that a cabinet is locked or finding an object in a drawer, the robot should reuse that knowledge rather than start each task from scratch. Yet today's robots often treat each task as new: compact scene representations omit interaction-derived knowledge, raw video histories are difficult to query, and VLM planners reason at inference time without persistently updating what the robot knows. We present MessyMem, a persistent memory system that enables mobile manipulators to learn from experience and reuse that knowledge across future tasks. It maintains a spatially grounded 3D scene graph of objects and locations, augments it with properties and outcomes learned through interaction, and links visual observations for fine-grained recall. We evaluate MessyMem in simulation and on a real mobile manipulator. In a continuous 25-task simulation spanning over 3 hours, MessyMem achieves 80.0% task progress, outperforming the strongest ablation by 14.8 percentage points and the strongest external baseline by 28.9 points, while retrieving task-relevant evidence from thousands of stored keyframes and over an hour into the past.",
+  "ARXIV": "https://arxiv.org/abs/2609.15976",
+  "FIRSTINSTITUTE": "Stanford",
+  "KEYWORD": "Application, Manipulation, Navigation, LLM, Open-Vocabulary, Long-Term Dynamics, Incremental, Indoor",
+  "SITE": "https://messymem.github.io/",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@inproceedings{banwasi2026messymem,\n  title = {MessyMem: Learning-from-Doing Memory for Mobile Manipulation},\n  author = {Banwasi, Anuva and Muckelroy, William and Sundaresan, Priya and Zhao, Linfeng and Bohg, Jeannette and Ho, Cherie},\n  booktitle = {Conf. on Robot Learning (CoRL)},\n  year = {2026}\n}"
+}
