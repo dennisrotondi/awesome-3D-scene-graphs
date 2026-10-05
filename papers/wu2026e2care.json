@@ -1,0 +1,14 @@
+{
+  "TITLE": "Embodiment Meets Environment: Toward Context-Aware, Safe Physical Caregiving Robots",
+  "VENUE": "RSS26",
+  "DATE": "2026/06/26",
+  "AUTHOR": "Zhanxin Wu, Ruofei Tong, Jiaying Fang, Tapomayukh Bhattacharjee",
+  "ABSTRACT": "Physical caregiving robots need to assist different users with different tasks in diverse environments, and they come in many embodiments. While substantial progress has been made on individual caregiving tasks, most existing systems remain tightly coupled to specific environments and robot embodiments, and often do not explicitly model or constrain interactions around people, despite humans being special agents in the environment. This motivates a focus on adapting to context that emerges from the joint interaction between the environment and the robot's embodiment. We propose $E^2$-CARE, a framework that enables context-aware adaptation by representing primitive caregiving skills as interaction templates whose execution is reshaped online. $E^2$-CARE represents the environment, the robot, and the human within a unified 3D dynamic scene graph that models these interaction contexts explicitly, and synthesizes task-specific constraints to govern how each skill is executed. By enforcing these constraints at runtime, the same skill templates can be reused zero-shot and safely across diverse environments and robot embodiments. We evaluate $E^2$-CARE across four activities of daily living in hundreds of simulated household environments, including assistive home settings, and across diverse robot embodiments, and validate it through user studies on two caregiving tasks with two robots in various real-world environments. Results demonstrate consistent and successful adaptation across these environments and embodiments. Website: https://emprise.cs.cornell.edu/e2care",
+  "ARXIV": "https://arxiv.org/abs/2606.28592",
+  "FIRSTINSTITUTE": "Cornell",
+  "KEYWORD": "Application, Manipulation, Planning, Humans, Indoor, Short-Term Dynamics",
+  "SITE": "https://emprise.cs.cornell.edu/e2care",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@inproceedings{wu2026e2care,\n  title = {Embodiment Meets Environment: Toward Context-Aware, Safe Physical Caregiving Robots},\n  author = {Wu, Zhanxin and Tong, Ruofei and Fang, Jiaying and Bhattacharjee, Tapomayukh},\n  booktitle = {Robotics: Science and Systems (RSS)},\n  year = {2026}\n}"
+}
