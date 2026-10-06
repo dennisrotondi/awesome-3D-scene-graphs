@@ -1,0 +1,14 @@
+{
+  "TITLE": "SGM-SLAM: Scene Graph Matching for Data-Efficient Distributed SLAM",
+  "VENUE": "arXiv26",
+  "DATE": "2026/06/15",
+  "AUTHOR": "Yewei Huang, Tixiao Shan, Abhinav Rajvanshi, Niluthpol Chowdhury Mithun, Yaxuan Li, Brendan Englot, Han-Pang Chiu",
+  "ABSTRACT": "We introduce a data-efficient distributed Simultaneous Localization and Mapping (SLAM) framework designed for a team of robots equipped with LiDAR, cameras, and inertial sensors. Our framework uses scene graph matching to identify inter-robot measurement constraints. Unlike prior approaches that rely on feature-level matching, our framework is the first to perform scene graph matching using only object labels and centroids. Our approach constructs a scene graph by using fused RGB-LiDAR point clouds to generate both a semantically segmented point cloud layer, and a layer of discrete bounded objects, to accompany estimated robot trajectories. Scene graph matching is performed collaboratively through exchanging and matching object data with neighboring robots. To maximize communication efficiency, we utilize a multi-step data exchange and optimization process. We demonstrate the effectiveness and efficiency of our approach using both simulation and real-world datasets collected by legged robots in indoor and outdoor environments.",
+  "ARXIV": "https://arxiv.org/abs/2606.16881",
+  "FIRSTINSTITUTE": "Dartmouth",
+  "KEYWORD": "Multi-Robot, SLAM, LiDAR, Indoor, Outdoor, Compression",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{huang2026sgmslam,\n  title = {SGM-SLAM: Scene Graph Matching for Data-Efficient Distributed SLAM},\n  author = {Huang, Yewei and Shan, Tixiao and Rajvanshi, Abhinav and Mithun, Niluthpol Chowdhury and Li, Yaxuan and Englot, Brendan and Chiu, Han-Pang},\n  year = {2026},\n  eprint = {2606.16881},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
