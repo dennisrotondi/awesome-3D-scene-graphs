@@ -1,0 +1,14 @@
+{
+  "TITLE": "Hierarchical Semantic-Augmented Navigation: Optimal Transport and Graph-Driven Reasoning for Vision-Language Navigation",
+  "VENUE": "NeurIPS25",
+  "DATE": "2025/12/02",
+  "AUTHOR": "Xiang Fang, Wanlong Fang, Changshuo Wang",
+  "ABSTRACT": "Vision-Language Navigation in Continuous Environments (VLN-CE) poses a formidable challenge for autonomous agents, requiring seamless integration of natural language instructions and visual observations to navigate complex 3D indoor spaces. Existing approaches often falter in long-horizon tasks due to limited scene understanding, inefficient planning, and lack of robust decision-making frameworks. We introduce the \\textbf{Hierarchical Semantic-Augmented Navigation (HSAN)} framework, a groundbreaking approach that redefines VLN-CE through three synergistic innovations. First, HSAN constructs a dynamic hierarchical semantic scene graph, leveraging vision-language models to capture multi-level environmental representations, from objects to regions to zones, enabling nuanced spatial reasoning. Second, it employs an optimal transport-based topological planner, grounded in Kantorovich's duality, to select long-term goals by balancing semantic relevance and spatial accessibility with theoretical guarantees of optimality. Third, a graph-aware reinforcement learning policy ensures precise low-level control, navigating subgoals while robustly avoiding obstacles. By integrating spectral graph theory, optimal transport, and advanced multi-modal learning, HSAN addresses the shortcomings of static maps and heuristic planners prevalent in prior work. Extensive experiments on multiple challenging VLN-CE datasets demonstrate that HSAN achieves state-of-the-art performance, with significant improvements in navigation success and generalization to unseen environments.",
+  "ARXIV": "https://arxiv.org/abs/2606.01565",
+  "FIRSTINSTITUTE": "HUST",
+  "KEYWORD": "Navigation, Planning, Policy, Hierarchical, Indoor, LLM",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@inproceedings{fang2025hsan,\n  title = {Hierarchical Semantic-Augmented Navigation: Optimal Transport and Graph-Driven Reasoning for Vision-Language Navigation},\n  author = {Fang, Xiang and Fang, Wanlong and Wang, Changshuo},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year = {2025}\n}"
+}
