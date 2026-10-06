@@ -1,0 +1,14 @@
+{
+  "TITLE": "ObsGraph: Hierarchical Observation Representation for Embodied Reasoning and Exploration",
+  "VENUE": "arXiv26",
+  "DATE": "2026/06/23",
+  "AUTHOR": "Taekbeom Lee, Youngseok Jang, Jeonghwa Heo, Jeongjun Choi, H. Jin Kim",
+  "ABSTRACT": "Embodied reasoning and exploration are increasingly considered crucial abilities for robots operating in complex and unfamiliar environments. To accomplish tasks in such settings, an agent must identify and acquire the information necessary for the task through exploration. We propose ObsGraph, an observation-centric hierarchical scene graph that unifies scene representation, retrieval, and exploration. It retains visual evidence and organizes it into room-view-object layers: rooms provide coarse semantic anchors, views preserve contextual object covisibility, and objects store fine-grained details. On top of this representation, we perform coarse-to-fine hierarchical retrieval under a bounded budget, and crucially use retrieval outcomes to structure the exploration candidate space--activating room-level exploration, view refinement, or frontier exploration--thereby tightly coupling representation, retrieval, and adaptive multi-scale exploration. Experiments across embodied reasoning and exploration benchmarks demonstrate improved success and efficiency, highlighting the benefits of structured scene representation and more targeted information gathering driven by identified evidence gaps.",
+  "ARXIV": "https://arxiv.org/abs/2606.24068",
+  "FIRSTINSTITUTE": "SNU",
+  "KEYWORD": "Application, Navigation, Active, LLM, Hierarchical, Indoor, Incremental",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{lee2026obsgraph,\n  title = {ObsGraph: Hierarchical Observation Representation for Embodied Reasoning and Exploration},\n  author = {Lee, Taekbeom and Jang, Youngseok and Heo, Jeonghwa and Choi, Jeongjun and Kim, H. Jin},\n  year = {2026},\n  eprint = {2606.24068},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV}\n}"
+}
