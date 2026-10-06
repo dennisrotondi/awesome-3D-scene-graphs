@@ -1,0 +1,14 @@
+{
+  "TITLE": "PROSE: Training-Free Egocentric Scene Registration with Vision-Language Models",
+  "VENUE": "arXiv26",
+  "DATE": "2026/06/15",
+  "AUTHOR": "Zhiang Chen, Nahyuk Lee, Boyang Sun, Taein Kwon, Marc Pollefeys, Zuria Bauer, Sunghwan Hong",
+  "ABSTRACT": "Registering two captures of the same indoor space taken at different times underpins persistent spatial memory for robots and AR systems, yet the realistic version of this task is egocentric and its most scalable form is RGB-only. Head-mounted cameras yield blurry, fast-moving, partially overlapping views from which dense geometry is hard to recover. Classical registration leans on exactly the clean point clouds this setting lacks, while learned scene-graph methods require a pre-built or annotated graph and a trained matcher that we find brittle under egocentric data. We take a different route, using a pretrained vision-language model as the source of both scene understanding and cross-scan matching. Our method, PROSE (Prompted Scene rEgistration), lifts each RGB sequence into an object-level 3D scene graph using off-the-shelf foundation models for geometry, segmentation, and language, then prompts the same VLM to match object instances across the two RGB sequences. To make this matching tractable and reliable, we leverage object heights as a prior and verify each proposed match with a paired same/different query, then solve for the rigid transform by hypothesizing a candidate per matched object and selecting the one with the strongest geometric consensus. PROSE adds no learned parameters and requires no depth sensor, training, or annotated graph. On the egocentric Aria Digital Twin and Aria Everyday Activities benchmarks, it outperforms both geometric and learned scene-graph baselines in registration accuracy, on ground-truth and RGB-reconstructed point clouds alike, and the scene graph it produces transfers directly to downstream tasks.",
+  "ARXIV": "https://arxiv.org/abs/2606.16569",
+  "FIRSTINSTITUTE": "ETH",
+  "KEYWORD": "Application, SUN, Indoor, LLM, Open-Vocabulary",
+  "SITE": "https://rckola.github.io/prose/",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{chen2026prose,\n  title = {PROSE: Training-Free Egocentric Scene Registration with Vision-Language Models},\n  author = {Chen, Zhiang and Lee, Nahyuk and Sun, Boyang and Kwon, Taein and Pollefeys, Marc and Bauer, Zuria and Hong, Sunghwan},\n  year = {2026},\n  eprint = {2606.16569},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV}\n}"
+}
