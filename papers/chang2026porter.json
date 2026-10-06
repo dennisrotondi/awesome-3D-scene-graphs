@@ -1,0 +1,14 @@
+{
+  "TITLE": "PORTER: Edge-Cloud Residency for Persistent 3D Scene Graph Memory",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/27",
+  "AUTHOR": "Yue Chang, Yifan Tian, Jiajing Peng, Dazhi Huang, Rufeng Chen, Zhaofan Zhang, Li Chen, Sihong Xie",
+  "ABSTRACT": "Recent task-driven and just-in-time 3D Scene Graph (3DSG) methods reduce per-task representations by constructing or activating only task-relevant information. Yet sparse per-task working sets do not bound onboard memory usage over a robot's lifetime: as tasks change, payloads accumulated for earlier tasks may become irrelevant to the current task but can be useful again in future tasks. Over repeated task switches and expanding environments, retaining such reusable payloads causes local memory to grow, whereas discarding them entirely can lead to costly repeated construction of the same payloads later. We introduce PORTER, which decouples persistence from residency: lightweight anchors remain in the limited memory of the edge robot while heavy object payloads migrate between the edge and the cloud. Relevance alone is insufficient for deciding residency because multiple relevant payloads may provide redundant information. We therefore decompose each task into functional requirements and introduce Irreplaceable Support Erasure (ISE), which measures the loss in requirement coverage caused by offloading. ISE discounts replaceable support and penalizes losses more strongly when the remaining coverage of a requirement is weak. PORTER constructs a budget-aware local working set by repeatedly offloading the payload with the smallest marginal ISE per byte. Experiments on JITOMA-Bench evaluate PORTER across four 3DSG builders. Under progressive compression, pooled relative mR@3 remains at 100% through 91% payload-byte offloading.",
+  "ARXIV": "https://arxiv.org/abs/2609.33258",
+  "FIRSTINSTITUTE": "HKUST",
+  "KEYWORD": "Application, Compression, LLM, Indoor",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{chang2026porter,\n  title = {PORTER: Edge-Cloud Residency for Persistent 3D Scene Graph Memory},\n  author = {Chang, Yue and Tian, Yifan and Peng, Jiajing and Huang, Dazhi and Chen, Rufeng and Zhang, Zhaofan and Chen, Li and Xie, Sihong},\n  year = {2026},\n  eprint = {2609.33258},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
