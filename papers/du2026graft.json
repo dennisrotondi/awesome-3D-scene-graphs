@@ -1,0 +1,14 @@
+{
+  "TITLE": "GraFT: A Training-Free Framework for Spatial Reasoning in Multimodal Large Language Models via 3D Scene Graphs",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/03",
+  "AUTHOR": "Junqing Du, Fernando Ropero, Erkin Turkoz, Yanfeng Zhang, Lu Liu",
+  "ABSTRACT": "3D spatial reasoning underpins understanding and acting in the physical world, yet it remains unreliable in current multimodal large language models (MLLMs). These models falter at precise geometric measurement, at transforming between egocentric and allocentric viewpoints, and at grounding fine-grained appearance. The most common remedies fine-tune the model on large-scale curated spatial-reasoning datasets or attach dedicated encoders for 3D geometry, which typically couples the solution to costly supervision and a specific backbone. We instead introduce GraFT, a training-free framework that supplies the missing 3D structure through a compact, easily maintained 3D scene graph (3DSG). From this 3DSG, GraFT provides three spatial reasoning capabilities: (1) deterministic geometry through symbolic tools, (2) allocentric layout through a bird's-eye-view (BEV) rendering, and (3) visual-attribute grounding through task-relevant egocentric frames. On ScanQA, GraFT improves every metric over the same-backbone baseline, raising CIDEr by 27%. On VSI-Bench, GraFT improves frozen MLLMs by up to 65%, surpassing every proprietary and general-purpose open-source baseline, and several prominent fine-tuned spatial models.",
+  "ARXIV": "https://arxiv.org/abs/2609.03892",
+  "FIRSTINSTITUTE": "Huawei",
+  "KEYWORD": "Application, LLM, SUN, Indoor",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{du2026graft,\n  title = {GraFT: A Training-Free Framework for Spatial Reasoning in Multimodal Large Language Models via 3D Scene Graphs},\n  author = {Du, Junqing and Ropero, Fernando and Turkoz, Erkin and Zhang, Yanfeng and Liu, Lu},\n  year = {2026},\n  eprint = {2609.03892},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV}\n}"
+}
