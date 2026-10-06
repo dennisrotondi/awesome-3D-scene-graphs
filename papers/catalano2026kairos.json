@@ -1,0 +1,14 @@
+{
+  "TITLE": "Kairos: Grounded Forecasting of Presence and Directional Flow in 4D Scene Graphs",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/23",
+  "AUTHOR": "Iacopo Catalano, Julio A. Placed, Javier Civera, Jorge Peña Queralta",
+  "ABSTRACT": "Long-term autonomy in human-populated environments requires anticipating whether and how people will move at times a robot has not yet observed. Existing representations of pedestrian motion face a tradeoff: they either forecast future activity, reducing each location to a scalar rate, or model the full directional distribution, holding it fixed in time. We present Kairos, a predictive directional-flow memory that extends a hierarchical 3D scene graph (3DSG) to a 4D scene graph (4DSG). Every observed voxel of the reconstructed geometry stores a directional mixture and a presence rate, and spectral predictors forecast, for any future query time, both the probability that people are present and the full directional distribution of their motion. Pairwise flow dependence between adjacent voxels supports conditional queries, and per-voxel predictive variances yield calibrated credible intervals that tighten as observations accumulate. We evaluate Kairos on three real pedestrian environments: a robot-collected campus dataset, a shopping mall, and a station concourse recorded continuously for eleven months. Its learned state remains consistent under loop-closure corrections, and its forecasts are competitive with dedicated occupancy and flow models trained on the full detection stream, although Kairos learns from only the small fraction available to a patrolling robot. Finally, we validate the representation on a downstream encounter-probability planning task, where plans computed over the Kairos forecasts encounter more people than plans computed over any time-invariant map at an equal success rate. We provide the code at https://github.com/IacopomC/kairos.",
+  "ARXIV": "https://arxiv.org/abs/2609.27467",
+  "FIRSTINSTITUTE": "UTU",
+  "KEYWORD": "Humans, Long-Term Dynamics, Hierarchical, Planning, Indoor",
+  "SITE": "",
+  "CODE": "https://github.com/IacopomC/kairos",
+  "VIDEO": "",
+  "BIBTEX": "@misc{catalano2026kairos,\n  title = {Kairos: Grounded Forecasting of Presence and Directional Flow in 4D Scene Graphs},\n  author = {Catalano, Iacopo and Placed, Julio A. and Civera, Javier and Peña Queralta, Jorge},\n  year = {2026},\n  eprint = {2609.27467},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
