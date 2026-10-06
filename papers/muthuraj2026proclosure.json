@@ -1,0 +1,14 @@
+{
+  "TITLE": "ProClosure: Hierarchical Room-Object Assignment using Progressive Boundary Closure from Monocular Video",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/11",
+  "AUTHOR": "Vinoth Kumar Muthuraj, Soumyadeep Banik, Kushal Sharma, Hardik Jain",
+  "ABSTRACT": "A 3D scene graph groups objects into rooms. When a robot is asked to fetch an object from the kitchen, that grouping is what tells it where to look. An object recorded in the wrong room is not retrievable by a query naming the correct room. We introduce Progressive Boundary Closure, which recovers room layer from a monocular RGB video. A SLAM front end and an open-vocabulary segmenter supply a structural point cloud, camera trajectory and object tracks. The cloud is rasterised into a top-down map, rooms are recovered from it, and each object takes the room holding most of its extent. The difficulty lies in the map itself. Walls are recorded only where the camera looked, so a gap in the boundary may be a doorway or a stretch of wall that was never observed; nothing distinguishes the two. Prior methods treat both as passages, merging rooms that should remain separate. We observe that both require the same treatment: a room should not extend across either, so both are closed and need not be distinguished. Such an opening closes under a small amount of boundary growth, and few sightlines cross it, so points in different rooms rarely see one another. We use the first to recover rooms and the second to assign objects to them. Rooms are obtained by Progressively thickening the boundary inward and freezing each free-space region once it becomes enclosed, so every opening seals at its own scale rather than at a radius fixed in advance. Camera poses are used as seeds, which removes the sampling heuristic and makes the segmentation deterministic. Over 10 floors of 6 HM3D-Semantics scenes, scored against HOV-SG on identical top-down maps, we recover 74 rooms for 72 annotated regions (HOV-SG: 44), raising room F_1 from 0.741 to 0.890 at IoU 0.25 at some cost in precision, and object-to-room ARI from 0.488 to 0.696 (p=0.002, ahead on every floor).",
+  "ARXIV": "https://arxiv.org/abs/2609.12614",
+  "FIRSTINSTITUTE": "IIT Jodhpur",
+  "KEYWORD": "Hierarchical, Indoor, Open-Vocabulary, SLAM",
+  "SITE": "",
+  "CODE": "https://github.com/ClarityLab-Org/ProClosure",
+  "VIDEO": "",
+  "BIBTEX": "@misc{muthuraj2026proclosure,\n  title = {ProClosure: Hierarchical Room-Object Assignment using Progressive Boundary Closure from Monocular Video},\n  author = {Muthuraj, Vinoth Kumar and Banik, Soumyadeep and Sharma, Kushal and Jain, Hardik},\n  year = {2026},\n  eprint = {2609.12614},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
