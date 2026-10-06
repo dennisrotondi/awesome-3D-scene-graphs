@@ -1,0 +1,14 @@
+{
+  "TITLE": "DSG: Dynamic 3D Scene Graph Construction for Embodied Agents in Changing Indoor Environments",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/01",
+  "AUTHOR": "Ming Liao, Chao Ye, Jianing Fei, Weiyang Lin",
+  "ABSTRACT": "In indoor environments, object positions frequently change due to human activities or embodied-agent interactions, causing previously constructed scene graphs to become inconsistent with the current scene. To address this issue, we propose DSG, a dynamic 3D scene graph construction framework that detects object changes and performs spatial relationship reasoning. First, we construct a semantic-aware 3D Gaussian scene representation and develop a dual-view rendering-based object change detection method to enable reliable scene graph node updates. Second, we propose a spatial relationship reasoning method that incorporates multi-granularity visual context, enabling a large language model to identify a richer set of interobject spatial relationships. Furthermore, we introduce DynTHOR, a dynamic indoor scene graph benchmark built on the AI2-THOR simulation platform for evaluating scene graph construction in dynamic environments. Extensive experiments on Dyn-THOR, 3RScan, and real-world scenes demonstrate that DSG consistently outperforms existing methods in both object node construction and spatial relationship reasoning, significantly improving the accuracy of dynamic scene graph construction.",
+  "ARXIV": "https://arxiv.org/abs/2609.00619",
+  "FIRSTINSTITUTE": "HIT",
+  "KEYWORD": "SUN, LLM, Long-Term Dynamics, Dataset, Indoor, RGB-D",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{liao2026dsg,\n  title = {DSG: Dynamic 3D Scene Graph Construction for Embodied Agents in Changing Indoor Environments},\n  author = {Liao, Ming and Ye, Chao and Fei, Jianing and Lin, Weiyang},\n  year = {2026},\n  eprint = {2609.00619},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO}\n}"
+}
