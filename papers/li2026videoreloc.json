@@ -1,0 +1,14 @@
+{
+  "TITLE": "VideoReloc: Long-Term Indoor Video Relocalization against a Kilobyte-Scale Semantic Scene Graph",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/18",
+  "AUTHOR": "Qianru Li, Xuyang Chen, Xuqin Wang, Zhenghao Zhang, Hongyi Luo, Tao Wu, Daniel Cremers, Lu Liu, Yanfeng Zhang",
+  "ABSTRACT": "Given a compact semantic scene graph, long-term indoor video relocalization estimates a map-frame trajectory after lighting and furniture changes. Visual methods rely on appearance and become unreliable under these changes; localizing one frame at a time from object classes and geometry instead leaves sparse, ambiguous evidence. We introduce VideoReloc, whose adaptive clips use odometry to gather spatial evidence until object and motion criteria are met, adapting query length to the observed scene. Its run-level decision rechecks conflicting placements using evidence accumulated across connected clips, stabilizing the trajectory beyond adjacent-clip tracking. Hypothesis-first registration proposes poses from object triplets and verifies each using clip-wide object centers and box surfaces. Orientation-aware refinement uses box faces, gravity and wall directions to resolve ambiguity in camera orientation and refine the full pose. This reframes sparse-map relocalization as verification of spatially extended video queries, moving discriminative support from stored appearance to temporal context and permitting a 100 kB map of class-labelled boxes. On RIO10 and ReplicaCAD, the all-frame localization success rate at 1 m/10$^\\circ$ is 73.5% and 61.1% under causal evaluation, rising to 90.6% and 74.8% with clip closure. The evaluated per-frame scene coordinate regressors reach up to 47.6% and 49.8%, respectively, with maps of 12.6-42 MB.",
+  "ARXIV": "https://arxiv.org/abs/2609.21804",
+  "FIRSTINSTITUTE": "TUM",
+  "KEYWORD": "Application, Indoor, RGB-D, Compression",
+  "SITE": "https://videoreloc.github.io/",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{li2026videoreloc,\n  title = {VideoReloc: Long-Term Indoor Video Relocalization against a Kilobyte-Scale Semantic Scene Graph},\n  author = {Li, Qianru and Chen, Xuyang and Wang, Xuqin and Zhang, Zhenghao and Luo, Hongyi and Wu, Tao and Cremers, Daniel and Liu, Lu and Zhang, Yanfeng},\n  year = {2026},\n  eprint = {2609.21804},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV},\n  url = {https://arxiv.org/abs/2609.21804}\n}"
+}
