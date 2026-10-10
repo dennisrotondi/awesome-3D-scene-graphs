@@ -1,0 +1,14 @@
+{
+  "TITLE": "R4DSG: Relative 4D Scene Graph Memory for Object-Centric Question Answering in Long Egocentric Video",
+  "VENUE": "arXiv26",
+  "DATE": "2026/08/11",
+  "AUTHOR": "Ke Ma, Yamin Mao, Weiming Li, Shuai Tan, Yijie Zhong, Hao Chen, Haofen Wang, Meng Wang",
+  "ABSTRACT": "Long-horizon egocentric video is a rich substrate for wearable AI assistants, but object-centric questions such as where an item was moved, when it last changed state, or why it was relocated remain difficult because caption- and transcript-based memories rarely preserve persistent object identity or structured spatial change. Existing long-video QA methods mainly emphasize temporal grounding and clip retrieval, while prior 3D scene-graph methods typically assume stronger geometry than free-motion wearable RGB video provides, including point clouds, RGB-D input, posed views, sparse reconstruction, or reconstructed scenes. R4DSG introduces a relative 4D scene graph memory for long egocentric video. Instead of storing raw graph sequences, R4DSG converts video into compact queryable memory entries indexed by time, place, persistent objects, anchor-relative change, and local interaction context. The main idea is to separate stable anchors from dynamic objects, maintain persistent object identity across frames, and represent object state through anchor-relative transitions rather than a globally aligned world model. Built on recent RGB-only advances in promptable video segmentation, temporal propagation, and relative 3D lifting, the method produces a retrieval-ready memory directly usable for long-horizon question answering. Evaluation on a 255-question object-related subset from EgoLifeQA shows, under question-only retrieval, a 6.7-point overall gain over EgoRAG-Text and a 12.5-point gain on when questions, which highlights the value of temporally organized object memory. These results position relative 4D scene graphs as a practical memory substrate for wearable assistants, AR systems, and embodied multimedia agents.",
+  "ARXIV": "https://arxiv.org/abs/2608.11017",
+  "FIRSTINSTITUTE": "Tongji",
+  "KEYWORD": "Application, LLM, Long-Term Dynamics, RGB-D",
+  "SITE": "https://dualtransparency.github.io/R4DSG/",
+  "CODE": "https://github.com/dualtransparency/R4DSG",
+  "VIDEO": "",
+  "BIBTEX": "@misc{ma2026r4dsg,\n  title = {R4DSG: Relative 4D Scene Graph Memory for Object-Centric Question Answering in Long Egocentric Video},\n  author = {Ma, Ke and Mao, Yamin and Li, Weiming and Tan, Shuai and Zhong, Yijie and Chen, Hao and Wang, Haofen and Wang, Meng},\n  year = {2026},\n  eprint = {2608.11017},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV},\n  doi = {10.1145/3767308.3835995},\n  url = {https://arxiv.org/abs/2608.11017}\n}"
+}
