@@ -1,0 +1,14 @@
+{
+  "TITLE": "LOCUS: Landmark-Oriented Container Discrimination Using Spatial Graphs",
+  "VENUE": "arXiv26",
+  "DATE": "2026/10/02",
+  "AUTHOR": "Taylor Bergeron, Shibani Senthilbabu, Kevin Leahy",
+  "ABSTRACT": "As robots are increasingly deployed in unstructured, real-world environments, the ability to reason about complex spatial and semantic relationships among objects remains a fundamental challenge in enabling robust and generalizable manipulation and navigation. For example, deciding where to search for an object that is not in plain sight depends on where it is physically plausible as well as semantically likely. Popular methods such as cosine similarity with CLIP struggle to disambiguate between spatially and semantically similar objects that could contain a target object. We propose Landmark-Oriented Container Discrimination Using Spatial Graphs (LOCUS). To jointly reason about spatial information and semantics, we train a GNN to update CLIP embeddings on a full environment scene graph by passing embedding information between nodes based on proximity. CLIP embeddings, augmented by semantic knowledge from a fusion of household ontologies provide a robust semantic signal. We evaluate in simulation on a noiseless scene graph from simulator metadata, making the approach detection-agnostic. Our approach outperforms random, CLIP, Tidybot, and an LLM planner in the majority of room classes and configurations in simulation. To show our approach is robust to scene graph node placement and label noise, we demonstrate a physical mobile manipulator running in an exploration pipeline start-to-finish including scene graph labels from Detic.",
+  "ARXIV": "https://arxiv.org/abs/2610.02803",
+  "FIRSTINSTITUTE": "WPI",
+  "KEYWORD": "Application, Navigation, Manipulation, Indoor",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{bergeron2026locus,\n  title = {LOCUS: Landmark-Oriented Container Discrimination Using Spatial Graphs},\n  author = {Bergeron, Taylor and Senthilbabu, Shibani and Leahy, Kevin},\n  year = {2026},\n  eprint = {2610.02803},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO},\n  url = {https://arxiv.org/abs/2610.02803}\n}"
+}
