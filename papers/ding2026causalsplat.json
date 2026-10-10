@@ -1,0 +1,14 @@
+{
+  "TITLE": "CausalSplat: Towards Comprehensive Hierarchical Reasoning in 3D Gaussian Splatting",
+  "VENUE": "arXiv26",
+  "DATE": "2026/08/11",
+  "AUTHOR": "Jiayu Ding, Meilu Song, Yun Chen, Wei Gao, Ge Li",
+  "ABSTRACT": "While 3D Gaussian Splatting (3DGS) has advanced open vocabulary scene understanding, existing methods remain confined to explicit queries. They struggle to interpret implicit intents, complex spatial constraints, and commonsense reasoning required for practical embodied interactions. To address this gap, we introduce the task of reasoning 3D Gaussian segmentation and construct two benchmarks, Causal-LERF and Causal-ScanNet. These benchmarks systematically evaluate commonsense, spatial, affordance, and counterfactual reasoning. Evaluations reveal that current state of the art methods perform poorly on these reasoning challenges. Therefore, we propose CausalSplat, a framework that integrates vision-language models with 3D scene graphs to disentangle explicit structural perception from implicit logical inference. Extensive experiments demonstrate that CausalSplat achieves state of the art performance on our reasoning benchmarks while showing strong generalizability on standard referring and open vocabulary 3D segmentation tasks.",
+  "ARXIV": "https://arxiv.org/abs/2608.11150",
+  "FIRSTINSTITUTE": "PKU",
+  "KEYWORD": "SUN, LLM, Open-Vocabulary",
+  "SITE": "https://jiayuding031020.github.io/CausalSplat/",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{ding2026causalsplat,\n  title = {CausalSplat: Towards Comprehensive Hierarchical Reasoning in 3D Gaussian Splatting},\n  author = {Ding, Jiayu and Song, Meilu and Chen, Yun and Gao, Wei and Li, Ge},\n  year = {2026},\n  eprint = {2608.11150},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CV},\n  url = {https://arxiv.org/abs/2608.11150}\n}"
+}
