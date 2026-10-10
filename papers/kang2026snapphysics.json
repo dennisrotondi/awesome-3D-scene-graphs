@@ -1,0 +1,14 @@
+{
+  "TITLE": "SnapPhysics: A Physics-Aware Scene Graph from a Single View for Interactive Mixed Reality Scenes",
+  "VENUE": "ISMAR26",
+  "DATE": "2026/09/17",
+  "AUTHOR": "Suji Kang, Seok-Young Kim, Young Bin Kim, Taewook Ha, Dieter Schmalstieg, Shohei Mori, Woontack Woo",
+  "ABSTRACT": "We propose SnapPhysics, a training-free framework that reconstructs 3D objects and estimates their physical properties such as mass, friction, and center of gravity from a single image. For physically coherent interactions in mixed reality (MR), such properties are as important as geometry. Prior approaches infer them by analyzing object dynamics in video, which is computationally costly, or by querying vision-language models (VLMs) on single images, which lacks geometric grounding and inter-object relationships. We address these limitations by combining instance-level 3D reconstruction and spatial alignment with a physics-aware scene graph that encodes these relationships and per-object metric geometry as structured context for VLM-based property reasoning. Experiments on 3D-FRONT show that SnapPhysics improves scene-level F-Score by 18.6% over the best learning-based method, and on real captured scenes with ground-truth mass, it reduces the mean absolute log difference error (mALDE) by up to 20.5% and improves log-scale correlation ($r^2_{\\mathrm{ls}}$) by up to 19.6% over VLM-only estimation. SnapPhysics enables physically interactive MR experiences without manual parameter tuning.",
+  "ARXIV": "https://arxiv.org/abs/2609.19815",
+  "FIRSTINSTITUTE": "UniStuttgart",
+  "KEYWORD": "Application, XR, LLM, SUN",
+  "SITE": "https://snapphysics-ismar2026.github.io/",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@inproceedings{kang2026snapphysics,\n  title = {SnapPhysics: A Physics-Aware Scene Graph from a Single View for Interactive Mixed Reality Scenes},\n  author = {Kang, Suji and Kim, Seok-Young and Kim, Young Bin and Ha, Taewook and Schmalstieg, Dieter and Mori, Shohei and Woo, Woontack},\n  booktitle = {IEEE and ACM Intl. Sym. on Mixed and Augmented Reality (ISMAR)},\n  year = {2026}\n}"
+}
