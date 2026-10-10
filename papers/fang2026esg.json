@@ -1,0 +1,14 @@
+{
+  "TITLE": "ESG: Generating Physically Consistent Dynamic 3D Scenes from Text Descriptions",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/14",
+  "AUTHOR": "Xintong Fang, Zhiyuan Fang, Rengan Xie, Xuhong Zhang, Guoyuan An, Zeran Liu, Jingyan Zhang, Jiarui Guo, Yuchi Huo",
+  "ABSTRACT": "Recent progress in image and 3D scene generation has enabled increasingly realistic static environments, yet most methods remain confined to such static configurations. Generating dynamic scenes from natural language is fundamentally challenging: it requires joint reasoning over scene structure, temporal evolution, and physical feasibility, while ensuring reliable execution in modern physics engines. We present a unified framework for generating physically consistent dynamic 3D scenes from text, with outputs directly executable in Unreal Engine. Central to our approach is the \\emph{Evolutive Scene Graph} (ESG), which specifies entities with physical attributes, spatial relations, and event-driven timelines in a machine-checkable form. Given a prompt, a large language model constructs and validates a complete ESG; spatial layouts are grounded via energy-minimized gradient optimization; timeline-constrained physical parameters are then optimized through differentiable simulation to satisfy user-specified events; and the resulting scene is compiled into an engine-executable class. Experiments on 10 scenes across three complexity levels show that our method achieves $16.4/18$ mean event completion, outperforming Scene Language, the strongest engine-executable baseline (SimWorld), and our ablation without physical optimization by a clear margin in event completion and parameter accuracy.",
+  "ARXIV": "https://arxiv.org/abs/2609.15392",
+  "FIRSTINSTITUTE": "ZJU",
+  "KEYWORD": "Planning, LLM, Short-Term Dynamics",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{fang2026esg,\n  title = {ESG: Generating Physically Consistent Dynamic 3D Scenes from Text Descriptions},\n  author = {Fang, Xintong and Fang, Zhiyuan and Xie, Rengan and Zhang, Xuhong and An, Guoyuan and Liu, Zeran and Zhang, Jingyan and Guo, Jiarui and Huo, Yuchi},\n  year = {2026},\n  eprint = {2609.15392},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.GR},\n  url = {https://arxiv.org/abs/2609.15392}\n}"
+}
