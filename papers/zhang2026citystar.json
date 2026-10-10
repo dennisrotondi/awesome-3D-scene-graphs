@@ -1,0 +1,14 @@
+{
+  "TITLE": "CitySTAR: Structured and Topology-Aware Reasoning for Open-Vocabulary Urban 3D Grounding",
+  "VENUE": "NeurIPS26",
+  "DATE": "2026/09/17",
+  "AUTHOR": "Shuai Zhang, Hongye Hou, Qinghe Liu, Zhuoxiao Li, Dongli Wu, Jing Ou, Yuan Liu, Wufan Zhao",
+  "ABSTRACT": "3D grounding aims to localize target entities in complex scenes from natural language and plays a fundamental role in embodied perception and spatial reasoning. However, existing approaches mostly rely on feature similarity or direct matching, making it difficult to connect natural-language intent with the implicit semantic and geometric structures hidden in billion-scale urban point clouds. We reformulate city-scale 3D grounding as structured constraint reasoning, where description semantics are organized into computable cross-modal constraints over open-vocabulary 3D entities, attributes, and spatial relations. We present CitySTAR, a training-free framework for reasoning-driven urban 3D grounding. CitySTAR lifts raw billion-scale urban point clouds into a query-ready scene graph of open-vocabulary 3D instances, with CodeLLM-driven tools supplying multimodal evidence for node attributes and 3D spatial relations. It then models target-context topology with paired hypergraphs and performs bidirectional topology verification for structural disambiguation. Finally, a Reflective Cross-modal Grounding module integrates topology consistency and candidate-centered 2D visual evidence to make decisions over a metric-aware 3D context graph. To further support this setting, we introduce CitySTAR-3D, an enhanced benchmark that improves semantic coverage, instance completeness, bounding-box fidelity, and spatial-relation complexity in city-scale 3D grounding. Extensive experiments show that CitySTAR consistently improves open-world urban 3D grounding while maintaining strong interpretability and generalization.",
+  "ARXIV": "https://arxiv.org/abs/2609.19911",
+  "FIRSTINSTITUTE": "HKUST",
+  "KEYWORD": "Application, Outdoor, Open-Vocabulary, LLM, Pre-Built PCD",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@inproceedings{zhang2026citystar,\n  title = {CitySTAR: Structured and Topology-Aware Reasoning for Open-Vocabulary Urban 3D Grounding},\n  author = {Zhang, Shuai and Hou, Hongye and Liu, Qinghe and Li, Zhuoxiao and Wu, Dongli and Ou, Jing and Liu, Yuan and Zhao, Wufan},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year = {2026}\n}"
+}
