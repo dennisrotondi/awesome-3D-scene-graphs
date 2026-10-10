@@ -1,0 +1,14 @@
+{
+  "TITLE": "A Topological Representation with Object-Path Graphs for Open-Vocabulary Instance Navigation",
+  "VENUE": "arXiv26",
+  "DATE": "2026/09/21",
+  "AUTHOR": "Linwei Zheng, Daojie Peng, Bingtao Wang, Haoang Li, Jun Ma",
+  "ABSTRACT": "Vision-language navigation requires embodied agents to navigate environments using natural language instructions and visual observations. Existing approaches typically decompose navigation into sequential language-guided decisions or rely on online exploration without prior environmental knowledge. Scene graph representations offer compact semantic memory but remain decoupled from downstream navigation, which still depends on dense metric maps. To close this gap, we propose an object-path graph that unifies open-vocabulary semantic reasoning with topological navigation. The proposed representation jointly supports semantic grounding, graph-based localization, and navigation within a single lightweight topological framework. Building on this graph, we introduce a navigation strategy that combines global path planning with local inter-node execution through lightweight node localization and semantic visual servoing, enabling navigation directly over the graph without dense metric reconstruction. Experiments on HM3D and Replica demonstrate competitive performance in open-vocabulary object grounding through the proposed hierarchical graph structure, while achieving effective navigation performance. Real-world robot experiments further validate the practicality of the proposed framework.",
+  "ARXIV": "https://arxiv.org/abs/2609.24189",
+  "FIRSTINSTITUTE": "HKUST",
+  "KEYWORD": "Navigation, RGB-D, Open-Vocabulary, Hierarchical",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{zheng2026objectpath,\n  title = {A Topological Representation with Object-Path Graphs for Open-Vocabulary Instance Navigation},\n  author = {Zheng, Linwei and Peng, Daojie and Wang, Bingtao and Li, Haoang and Ma, Jun},\n  year = {2026},\n  eprint = {2609.24189},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO},\n  url = {https://arxiv.org/abs/2609.24189}\n}"
+}
