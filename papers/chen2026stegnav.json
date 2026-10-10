@@ -1,0 +1,14 @@
+{
+  "TITLE": "STEGNav: Spatio-Temporal Event Graph Reasoning for Multimodal Lifelong Object Navigation",
+  "VENUE": "arXiv26",
+  "DATE": "2026/08/28",
+  "AUTHOR": "Yang Chen, Zhenyu Huang, Wenbo Fu, Danyang Peng, Shi-Yu Tian, Kun-Yang Yu, Lan-Zhe Guo",
+  "ABSTRACT": "Multimodal lifelong navigation requires an agent to autonomously explore unseen environments while sequentially completing navigation tasks specified by object categories, language descriptions, or reference images. Existing methods primarily accomplish these tasks by constructing state-centric semantic scene graphs. By treating scene graphs as persistent repositories of semantic observations, these methods struggle to distinguish similar instances, jointly represent semantic targets and exploration frontiers, and effectively exploit navigation memory and trajectory experience. To address these limitations, we propose Spatio-Temporal Event Graph Navigation (STEGNav), a training-free framework that extends conventional scene graphs into spatio-temporal event graphs along complementary spatial and temporal axes. The spatial axis performs query-conditioned instance grounding and jointly represents semantic targets and occupancy-aware exploration frontiers characterized by reachability, path cost, and exploration utility. The temporal axis employs trajectory-aware dual-window memory to retain recent decision--trajectory events and verified cross-subtask navigation outcomes. A VLM-based navigation agent reasons over the resulting spatio-temporal event graph and selects either a target instance or an exploration frontier as its next navigation goal. STEGNav achieves 66.3% SR and 39.7 SPL on GOAT-Bench, as well as SR scores of 64.0% and 69.4% on HM3Dv1 and HM3Dv2, respectively. Ablation studies and error analyses validate the complementary effects of the two axes, demonstrating that event-driven spatio-temporal representations improve navigation reliability and cross-subtask experience reuse.",
+  "ARXIV": "https://arxiv.org/abs/2608.28279",
+  "FIRSTINSTITUTE": "NJU",
+  "KEYWORD": "Navigation, RGB-D, Open-Vocabulary, LLM, Incremental, Long-Term Dynamics",
+  "SITE": "",
+  "CODE": "",
+  "VIDEO": "",
+  "BIBTEX": "@misc{chen2026stegnav,\n  title = {STEGNav: Spatio-Temporal Event Graph Reasoning for Multimodal Lifelong Object Navigation},\n  author = {Chen, Yang and Huang, Zhenyu and Fu, Wenbo and Peng, Danyang and Tian, Shi-Yu and Yu, Kun-Yang and Guo, Lan-Zhe},\n  year = {2026},\n  eprint = {2608.28279},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.RO},\n  url = {https://arxiv.org/abs/2608.28279}\n}"
+}
