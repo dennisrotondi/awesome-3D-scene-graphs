@@ -26,7 +26,10 @@ export const SURVEY = {
   url: `https://doi.org/${DOI}`,
   arxiv: `https://arxiv.org/abs/${ARXIV_ID}`,
   pdf: `https://arxiv.org/pdf/${ARXIV_ID}`,
-  cover: 'preview.svg',
+  // First page of the paper, rendered to a 612px WebP (~74 KB): it is shown at
+  // ~200-260px wide, where the previous vector export (394 KB, 69 embedded
+  // images) only cost download size.
+  cover: 'preview.webp',
   // TODO: once the article leaves "In press" and volume 10 is out (2027), add
   // `pages`, set `year` to the volume year, and drop the `note` (also in
   // papers/rotondi2026survey.json, whose VENUE then becomes ARCRAS27).

@@ -80,6 +80,10 @@ FOOTER = """\
 ![papers by publication](plots/papers_by_publication.png)
 """
 
+# The README plots render at most ~880px wide on GitHub; 150 dpi (1800x900 px)
+# stays sharp on 2x screens at about a third of the 300-dpi file size.
+PLOT_DPI = 150
+
 
 def get_sections(paper: dict) -> list[str]:
     keywords = {kw.strip() for kw in paper.get("KEYWORD", "").split(",") if kw.strip()}
@@ -132,7 +136,7 @@ def generate_plots(papers: list[dict], plots_dir: str = "plots") -> None:
     plt.grid(axis="y")
     plt.tight_layout()
     plt.gca().yaxis.set_major_locator(plt.MaxNLocator(integer=True))
-    plt.savefig(f"{plots_dir}/papers_by_year.png", dpi=300)
+    plt.savefig(f"{plots_dir}/papers_by_year.png", dpi=PLOT_DPI)
     plt.close()
 
     pubs = [p["VENUE"][:-2] for p in papers if p.get("VENUE") and p["VENUE"][:-2].lower() != "arxiv"]
@@ -147,7 +151,7 @@ def generate_plots(papers: list[dict], plots_dir: str = "plots") -> None:
     plt.grid(axis="y")
     plt.tight_layout()
     plt.gca().yaxis.set_major_locator(plt.MaxNLocator(integer=True))
-    plt.savefig(f"{plots_dir}/papers_by_publication.png", dpi=300)
+    plt.savefig(f"{plots_dir}/papers_by_publication.png", dpi=PLOT_DPI)
     plt.close()
 
 
