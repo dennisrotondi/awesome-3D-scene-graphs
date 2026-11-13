@@ -379,7 +379,7 @@ export default function AdvancedSearch() {
           variant={viewMode === 'graph' ? 'primary' : 'outline-primary'}
           onClick={() => setViewMode('graph')}
         >
-          Connected Papers
+          Paper map
         </Button>
       </div>
 

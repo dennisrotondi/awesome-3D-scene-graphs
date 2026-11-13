@@ -24,7 +24,9 @@ import {
   type ScaleFunction,
 } from 'recharts';
 import {
-  YEAR_COLORS,
+  yearColor,
+  CHART_GREEN,
+  CHART_GREEN_DARK,
   ONE_DAY_MS,
   FIVE_YEARS_DAYS,
   THREE_YEARS_DAYS,
@@ -79,8 +81,6 @@ type TimelinePlotProps = {
 const AXIS_PADDING = 15;
 const CHART_MARGIN_LEFT = 40;
 const CHART_MARGIN_RIGHT = 20;
-
-const getColorForYear = (year: number) => YEAR_COLORS[year % YEAR_COLORS.length];
 
 // Smaller dots when zoomed out, where many papers share little space.
 const dotRadius = (rangeDays: number) => (rangeDays > FIVE_YEARS_DAYS ? 6 : 8);
@@ -363,7 +363,7 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
         paperId: nearest.paperId,
         x: nearest.x,
         y: nearest.y ?? 0,
-        fill: getColorForYear(nearest.year),
+        fill: yearColor(nearest.year),
         title: nearest.title,
         author: nearest.author,
         venue: nearest.venue,
@@ -526,10 +526,10 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
                 x2={refAreaRight}
                 y1={yDomain[0]}
                 y2={yDomain[1]}
-                fill="#a5b4fc"
-                fillOpacity={0.25}
-                stroke="#6366f1"
-                strokeOpacity={0.8}
+                fill={CHART_GREEN}
+                fillOpacity={0.3}
+                stroke={CHART_GREEN_DARK}
+                strokeOpacity={0.9}
                 // recharts 3 dropped `isFront`: draw the selection above the dots
                 zIndex={DefaultZIndexes.scatter + 1}
               />
@@ -543,7 +543,7 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
               )}
             >
               {visibleData.map((p) => (
-                <Cell key={p.id} fill={getColorForYear(p.year)} />
+                <Cell key={p.id} fill={yearColor(p.year)} />
               ))}
             </Scatter>
 

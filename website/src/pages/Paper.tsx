@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { papers } from '../components/papers';
 import { Container, Row, Col } from 'react-bootstrap';
 import { getPaperLinks } from '../components/paperLinks';
-import { formatDate, TOAST_DURATION_MS } from '../components/Constants';
+import { formatDate, TOAST_DURATION_MS, CHART_GREEN_DARK } from '../components/Constants';
 import { FaCopy, FaCheck } from 'react-icons/fa';
 
 function extractYouTubeId(url: string): string | null {
@@ -148,7 +148,7 @@ export default function PaperPage() {
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
-                  color: copied ? '#1a7f37' : '#6c757d',
+                  color: copied ? CHART_GREEN_DARK : '#6c757d',
                   display: 'flex',
                   alignItems: 'center',
                   gap: 5,

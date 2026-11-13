@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { papers } from './papers';
 import type { Paper } from './papers';
-import { YEAR_COLORS, formatDate } from './Constants';
+import { yearColor, formatDate } from './Constants';
 import citationsJson from '../citations.json';
 
-// Simplified "connected papers" view. Every paper is linked to its K most
+// The paper map. Every paper is linked to its K most
 // keyword-similar papers (Jaccard) and drawn toward the survey milestone
 // papers it resembles; milestones act as pinned cluster anchors. Layout is
 // two-level: a force layout of the anchors, then one global simulation with
@@ -397,8 +397,6 @@ export default function PaperGraph({ suggestions }: { suggestions?: Paper[] }) {
   // node indices shift when the filtered set changes; drop any stale hover
   useEffect(() => setHovered(null), [items]);
 
-  const getColorForYear = (year: number) => YEAR_COLORS[year % YEAR_COLORS.length];
-
   if (!items.length) return null;
 
   // Nearest-node hover on the whole svg: per-node hit circles overlap in dense
@@ -469,7 +467,7 @@ export default function PaperGraph({ suggestions }: { suggestions?: Paper[] }) {
               cx={node.x}
               cy={node.y}
               r={hovered === i ? node.radius + 2 : node.radius}
-              fill={getColorForYear(node.year)}
+              fill={yearColor(node.year)}
               stroke={node.milestoneLabel ? INK : 'white'}
               strokeWidth={1.5}
             />

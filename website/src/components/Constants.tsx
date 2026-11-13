@@ -1,11 +1,13 @@
+import type { Paper } from './papers';
+
 // ==============================================================================
 // Stats chart palette
 // ==============================================================================
 
-// Single-colour statistics charts (Stats page, Advanced Search statistics view)
-// use the site's main green, the navbar/button colour, so they read as one
-// system with the rest of the site instead of the earlier brown. Multi-colour
-// charts (per-year stacks, keyword trends, Connected Papers) keep YEAR_COLORS.
+// Single-series stats charts that are not bar charts (cumulative growth) use
+// the site's main green, the navbar/button colour, instead of the earlier
+// brown. Every multi-colour chart (papers per year, by venue, by keyword,
+// keyword trends, paper map) uses YEAR_COLORS.
 export const CHART_GREEN = '#9CAFAA';
 // The main green is a light, greyish tone (2.2:1 on white): fine as a fill, too
 // faint for thin lines or as the only edge of a bar. This deeper step of the
@@ -15,7 +17,7 @@ export const CHART_INK = '#3b4248';
 export const CHART_GRID = 'rgba(59,66,72,0.15)';
 export const CHART_AXIS = 'rgba(59,66,72,0.25)';
 export const CHART_CURSOR = 'rgba(156,175,170,0.15)';
-// Recharts tooltips shaped like the site's own chart tooltips (Connected Papers,
+// Recharts tooltips shaped like the site's own chart tooltips (paper map,
 // Timeline: `.chart-tooltip`), instead of recharts' square grey-bordered box.
 export const CHART_TOOLTIP_STYLE = {
   contentStyle: {
@@ -32,7 +34,7 @@ export const CHART_TOOLTIP_STYLE = {
   itemStyle: { color: CHART_INK, padding: 0 },
 };
 
-// Color palette for timeline scatter plot
+// The shared categorical palette of the stats charts, the timeline and the paper map.
 export const YEAR_COLORS = [
   '#D6A99D', // warm clay
   '#CDB4DB', // soft lilac
@@ -45,6 +47,37 @@ export const YEAR_COLORS = [
   '#C4CFD0', // cool gray-blue
   '#A4B8B5', // aqua-gray
 ];
+
+// One colour per calendar year, keyed by the year itself (not by its position
+// in a chart), so a year has the same colour in "Papers per year", the venue
+// stacks, the timeline and the paper map, and a search never repaints it.
+export const yearColor = (year: number) => YEAR_COLORS[year % YEAR_COLORS.length];
+
+// ==============================================================================
+// Keyword colours
+// ==============================================================================
+
+// Keywords of a set of papers, most frequent first (name breaks ties, so the
+// order is deterministic), with how many papers carry each.
+export function rankKeywords(items: Paper[]): { keyword: string; count: number }[] {
+  const counts: Record<string, number> = {};
+  items.forEach((p) =>
+    (p.KEYWORD || '')
+      .split(',')
+      .map((k) => k.trim())
+      .filter(Boolean)
+      .forEach((k) => (counts[k] = (counts[k] || 0) + 1))
+  );
+  return Object.entries(counts)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([keyword, count]) => ({ keyword, count }));
+}
+
+// One colour rule for every keyword chart: a keyword takes the YEAR_COLORS
+// entry at its rankKeywords() position, the same pattern as the other stats
+// bars. "Papers by keyword" and "Keyword trends" rank the same set of papers,
+// so a keyword always has the same colour in both.
+export const keywordColor = (rank: number) => YEAR_COLORS[rank % YEAR_COLORS.length];
 
 // Time constants
 export const ONE_DAY_MS = 1000 * 60 * 60 * 24;
