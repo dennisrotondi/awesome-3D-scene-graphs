@@ -9,7 +9,7 @@ import { papers } from '../components/papers';
 import type { Paper } from '../components/papers';
 import { SURVEY } from '../surveyPaper';
 import { TOAST_DURATION_MS } from '../components/Constants';
-// import GrowthChart from '../components/GrowthChart'; // re-enable with the chart block below
+// import StatsPlot from '../components/StatsPlot'; // re-enable with the chart block below
 
 function Home() {
   const [showToast, setShowToast] = useState(false);
@@ -201,11 +201,11 @@ function Home() {
       )}
 
       {/* Field growth: papers per year — hidden for now, re-enable by uncommenting
-          (also restore the GrowthChart import above)
+          (also restore the StatsPlot import above)
       <Row className="justify-content-center mt-5 mb-4">
         <Col xs={12} md={10}>
           <h2 className="growth-title">Papers per year</h2>
-          <GrowthChart />
+          <StatsPlot suggestions={papers} mode="year" />
         </Col>
       </Row>
       */}

@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Card, Form, Row, Col, Button, Alert, Badge } from 'react-bootstrap';
 import { GITHUB_REPO } from '../surveyPaper';
 import { KEYWORDS } from '../keywords';
+import { isHttpUrl, isArxivUrl, ARXIV_ABS_RE } from '../utils/links';
 
 type Paper = {
   TITLE: string;
@@ -96,12 +97,15 @@ const Contribute: React.FC = () => {
       }
     });
 
-    // ARXIV: an arXiv link must be the canonical abstract link (same rule as
-    // scripts/validate_papers.py); a published-version link is fine as is.
-    if (
-      /arxiv\.org/i.test(paper.ARXIV) &&
-      !/^https:\/\/arxiv\.org\/abs\/\d{4}\.\d{4,5}$/.test(paper.ARXIV.trim())
-    ) {
+    // Links, with the same rules as scripts/validate_papers.py (see
+    // utils/links.ts): every link is an http(s) URL, and an arXiv link in ARXIV
+    // must be the canonical abstract link; a published-version link is fine.
+    (['ARXIV', 'SITE', 'CODE', 'VIDEO'] as const).forEach((k) => {
+      const value = paper[k].trim();
+      if (value && !isHttpUrl(value)) newErrors[k] = 'Use a full http(s):// link';
+    });
+    const arxiv = paper.ARXIV.trim();
+    if (!newErrors.ARXIV && isArxivUrl(arxiv) && !ARXIV_ABS_RE.test(arxiv)) {
       newErrors.ARXIV = 'Use https://arxiv.org/abs/<id> for arXiv links';
     }
 

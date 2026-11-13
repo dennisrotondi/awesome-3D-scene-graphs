@@ -21,7 +21,9 @@ import {
   ZIndexLayer,
   useXAxisScale,
   useYAxisScale,
+  useXAxisInverseScale,
   type ScaleFunction,
+  type InverseScaleFunction,
 } from 'recharts';
 import {
   yearColor,
@@ -79,8 +81,9 @@ type TimelinePlotProps = {
 };
 
 const AXIS_PADDING = 15;
-const CHART_MARGIN_LEFT = 40;
-const CHART_MARGIN_RIGHT = 20;
+// Room above and below the outermost dots (radius 8 + 3px halo), so the hidden
+// y-axis, which clips to the plot, never cuts the top or bottom paper in half.
+const DOT_EDGE_PADDING = 12;
 
 // Smaller dots when zoomed out, where many papers share little space.
 const dotRadius = (rangeDays: number) => (rangeDays > FIVE_YEARS_DAYS ? 6 : 8);
@@ -121,15 +124,18 @@ const TimelineDot = React.memo(function TimelineDot({
 //      paper a click will open.
 const HOVER_RADIUS = 20; // px from a dot's centre that still counts as hovering it
 
-type ChartScales = { x: ScaleFunction; y: ScaleFunction };
+type ChartScales = { x: ScaleFunction; y: ScaleFunction; xInverse: InverseScaleFunction };
 
 // The mouse handlers live on the wrapper div, outside the chart, where
 // recharts' hooks are not available; this child hands them the live scales.
+// Every handler (hover, drag-zoom, wheel-zoom) converts between pixels and
+// data through these, so none of them repeats the chart's margins by hand.
 function ScaleProbe({ scalesRef }: { scalesRef: React.MutableRefObject<ChartScales | null> }) {
   const x = useXAxisScale();
   const y = useYAxisScale();
+  const xInverse = useXAxisInverseScale();
   useEffect(() => {
-    scalesRef.current = x && y ? { x, y } : null;
+    scalesRef.current = x && y && xInverse ? { x, y, xInverse } : null;
   });
   return null;
 }
@@ -250,13 +256,18 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
   );
 
   // 1. Fit the hidden y-axis to the ranks in view, with one rank of headroom on
-  //    each side. At full zoom this is the old [0, 1] domain.
+  //    each side (DOT_EDGE_PADDING adds the pixel room the dots need).
   const rankStep = baseData.length ? 1 / baseData.length : 1;
   const yDomain: [number, number] = visibleData.length
     ? [(visibleData[0].y ?? 0) - rankStep, (visibleData[visibleData.length - 1].y ?? 1) + rankStep]
     : [0, 1];
 
   const scalesRef = useRef<ChartScales | null>(null);
+
+  // Zooming (wheel, drag, reset) or new search results move every dot, so the
+  // hovered paper is no longer under the cursor; drop it until the next move,
+  // or a click would open a paper the user no longer points at.
+  useEffect(() => setHoveredPoint(null), [currentLeft, currentRight, baseData]);
 
   const monthTicks =
     rangeDays <= THREE_YEARS_DAYS && rangeDays > 90
@@ -295,32 +306,25 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
   const tickMode = rangeDays > THREE_YEARS_DAYS ? 'year' : rangeDays > 90 ? 'month' : 'day';
   const finalTicks = yearTicks || monthTicks || undefined;
 
-  const getXValue = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (minX == null || maxX == null) return null;
-
-      const rect = e.currentTarget.getBoundingClientRect();
-      const plotWidth = rect.width - (CHART_MARGIN_LEFT + CHART_MARGIN_RIGHT) - AXIS_PADDING * 2;
-      const mouseXRelativeToPlot = e.clientX - rect.left - CHART_MARGIN_LEFT - AXIS_PADDING;
-
-      let ratio = mouseXRelativeToPlot / plotWidth;
-      if (ratio < 0) ratio = 0;
-      if (ratio > 1) ratio = 1;
-
-      const domainStart = xDomainLeft ?? minX;
-      const domainEnd = xDomainRight ?? maxX;
-      const domainRange = domainEnd - domainStart;
-
-      return domainStart + domainRange * ratio;
+  // Date under the mouse, through the chart's inverse x scale, clamped to the
+  // visible range (the axis padding sits outside it).
+  const dateAtMouse = useCallback(
+    (e: { currentTarget: HTMLElement; clientX: number }): number | null => {
+      const scales = scalesRef.current;
+      const surface = e.currentTarget.querySelector('svg.recharts-surface');
+      if (!scales || !surface) return null;
+      const value = Number(scales.xInverse(e.clientX - surface.getBoundingClientRect().left));
+      if (!Number.isFinite(value)) return null;
+      return Math.min(Math.max(value, currentLeft), currentRight);
     },
-    [minX, maxX, xDomainLeft, xDomainRight]
+    [currentLeft, currentRight]
   );
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     mouseDownXRef.current = e.clientX;
     isDraggingRef.current = false;
     clickedPaperRef.current = hoveredPoint?.paperId ?? null;
-    const xValue = getXValue(e);
+    const xValue = dateAtMouse(e);
     if (xValue !== null) {
       setRefAreaLeft(xValue);
       setRefAreaRight(xValue);
@@ -332,7 +336,7 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
       if (mouseDownXRef.current !== null && Math.abs(e.clientX - mouseDownXRef.current) > 5) {
         isDraggingRef.current = true;
       }
-      const xValue = getXValue(e);
+      const xValue = dateAtMouse(e);
       if (xValue !== null) setRefAreaRight(xValue);
       return;
     }
@@ -378,7 +382,14 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
   const onMouseLeave = () => setHoveredPoint(null);
 
   const zoom = useCallback(() => {
-    if (refAreaLeft == null || refAreaRight == null || refAreaLeft === refAreaRight) {
+    // Only a real drag zooms: a click whose mouse wobbled by a pixel or two
+    // (which still opens the paper) must not also zoom into a tiny sliver.
+    if (
+      !isDraggingRef.current ||
+      refAreaLeft == null ||
+      refAreaRight == null ||
+      refAreaLeft === refAreaRight
+    ) {
       setRefAreaLeft(null);
       setRefAreaRight(null);
       return;
@@ -417,11 +428,10 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
       const domainEnd = xDomainRight ?? maxX;
       const domainRange = domainEnd - domainStart;
 
-      const rect = e.currentTarget.getBoundingClientRect();
-      const plotWidth = rect.width - (CHART_MARGIN_LEFT + CHART_MARGIN_RIGHT) - AXIS_PADDING * 2;
-      const mouseXRelativePlot = e.clientX - rect.left - CHART_MARGIN_LEFT - AXIS_PADDING;
-      const mouseRatio = Math.max(0, Math.min(1, mouseXRelativePlot / plotWidth));
-      const anchorX = domainStart + domainRange * mouseRatio;
+      // keep the date under the mouse fixed while the range grows or shrinks
+      const anchorX = dateAtMouse(e);
+      if (anchorX == null || domainRange <= 0) return;
+      const mouseRatio = (anchorX - domainStart) / domainRange;
 
       let newRange =
         e.deltaY > 0
@@ -445,7 +455,7 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
       setXDomainLeft(newStart);
       setXDomainRight(newEnd);
     },
-    [minX, maxX, xDomainLeft, xDomainRight]
+    [minX, maxX, xDomainLeft, xDomainRight, dateAtMouse]
   );
 
   const throttledWheel = useMemo(() => throttle(handleWheel, 50), [handleWheel]);
@@ -518,7 +528,14 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
               textAnchor="end"
             />
 
-            <YAxis type="number" dataKey="y" domain={yDomain} allowDataOverflow hide />
+            <YAxis
+              type="number"
+              dataKey="y"
+              domain={yDomain}
+              allowDataOverflow
+              padding={{ top: DOT_EDGE_PADDING, bottom: DOT_EDGE_PADDING }}
+              hide
+            />
 
             {refAreaLeft != null && refAreaRight != null && (
               <ReferenceArea

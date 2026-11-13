@@ -313,7 +313,8 @@ def validate_file(path: Path, arxiv_to_files: dict[str, list[str]],
     #     URL_FIELDS). An arXiv link must use the one canonical form, so the
     #     duplicate check and the citation lookup see the same id everywhere. ---
     ax = sval("ARXIV")
-    if ax and is_http_url(ax) and "arxiv.org" in urlparse(ax).netloc.lower():
+    host = (urlparse(ax).hostname or "") if ax else ""
+    if ax and is_http_url(ax) and (host == "arxiv.org" or host.endswith(".arxiv.org")):
         if not ARXIV_CANON_RE.match(ax):
             err(name, f"ARXIV arXiv links must be https://arxiv.org/abs/<id> "
                       f"(no www., /pdf/ or version suffix): {ax!r}")

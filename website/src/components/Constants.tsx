@@ -34,17 +34,25 @@ export const CHART_TOOLTIP_STYLE = {
   itemStyle: { color: CHART_INK, padding: 0 },
 };
 
-// The shared categorical palette of the stats charts, the timeline and the paper map.
+// The shared categorical palette of the stats charts, the timeline and the
+// paper map. Three steps were too pale on white: sage (1.4:1) made a
+// near-invisible trend line, and grey-blue (1.6:1) and olive sage (1.8:1) were
+// faint. They were stepped down, and sage and olive sage re-chosen together so
+// they stay apart (darkening sage alone made it merge with olive sage):
+// sage 1.7:1, olive sage 2.8:1, grey-blue (shifted toward blue, away from the
+// aqua-grey next to it) 1.75:1. The muted palette still separates less than a
+// validated categorical one for colour-blind readers; every chart carries
+// identity in axis labels, end labels or a legend as well.
 export const YEAR_COLORS = [
   '#D6A99D', // warm clay
   '#CDB4DB', // soft lilac
-  '#D6DAC8', // sage
+  '#C1C9A5', // sage (was #D6DAC8)
   '#A27E6F', // deeper rose
   '#BFA780', // muted ochre
-  '#B7C4A1', // olive sage
+  '#949E70', // olive sage (was #B7C4A1)
   '#8CA6A6', // muted teal
   '#CCAFA5', // dusty mauve
-  '#C4CFD0', // cool gray-blue
+  '#B4C5DF', // pale blue (was cool grey-blue #C4CFD0)
   '#A4B8B5', // aqua-gray
 ];
 
@@ -77,6 +85,10 @@ export function rankKeywords(items: Paper[]): { keyword: string; count: number }
 // entry at its rankKeywords() position, the same pattern as the other stats
 // bars. "Papers by keyword" and "Keyword trends" rank the same set of papers,
 // so a keyword always has the same colour in both.
+// TODO: colours follow the rank in the current view, so the same keyword can
+// change colour between Advanced Search queries. A colour per keyword would
+// need 25 distinguishable colours, more than a chart can keep apart; accepted
+// so that the two keyword charts always match each other.
 export const keywordColor = (rank: number) => YEAR_COLORS[rank % YEAR_COLORS.length];
 
 // Time constants

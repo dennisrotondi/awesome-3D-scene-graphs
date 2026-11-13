@@ -14,9 +14,15 @@ import {
 } from 'recharts';
 import { papers } from './papers';
 import type { Paper } from './papers';
-import { CHART_TOOLTIP_STYLE, rankKeywords, keywordColor } from './Constants';
+import {
+  CHART_INK,
+  CHART_GRID,
+  CHART_AXIS,
+  CHART_TOOLTIP_STYLE,
+  rankKeywords,
+  keywordColor,
+} from './Constants';
 
-const INK = '#3b4248';
 const TOP_KEYWORDS = 6;
 // Years with fewer papers than this are dropped: percentage shares over a
 // handful of papers are all noise. Relaxed for small filtered sets, where a
@@ -97,7 +103,7 @@ function EndLabels({
               strokeWidth={1}
             />
           )}
-          <text x={x + END_LABEL_DX} y={y + 4} fill={INK} fontSize={12}>
+          <text x={x + END_LABEL_DX} y={y + 4} fill={CHART_INK} fontSize={12}>
             {keyword}
           </text>
         </g>
@@ -161,18 +167,23 @@ export default function KeywordTrends({ suggestions }: { suggestions?: Paper[] }
   return (
     <ResponsiveContainer width="100%" height={320}>
       <LineChart data={rows} margin={{ top: 8, right: 110, left: -16, bottom: 0 }}>
-        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(59,66,72,0.15)" />
+        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_GRID} />
         <XAxis
           dataKey="year"
           tickLine={false}
-          axisLine={{ stroke: 'rgba(59,66,72,0.25)' }}
-          tick={{ fill: INK, fontSize: 12 }}
+          axisLine={{ stroke: CHART_AXIS }}
+          tick={{ fill: CHART_INK, fontSize: 12 }}
         />
-        <YAxis unit="%" tickLine={false} axisLine={false} tick={{ fill: INK, fontSize: 12 }} />
+        <YAxis
+          unit="%"
+          tickLine={false}
+          axisLine={false}
+          tick={{ fill: CHART_INK, fontSize: 12 }}
+        />
         <Tooltip formatter={(value: number) => `${value}%`} {...CHART_TOOLTIP_STYLE} />
         <Legend
           wrapperStyle={{ fontSize: 13 }}
-          formatter={(value) => <span style={{ color: INK }}>{value}</span>}
+          formatter={(value) => <span style={{ color: CHART_INK }}>{value}</span>}
         />
         {topKeywords.map((keyword) => (
           <Line

@@ -2,6 +2,7 @@ import React from 'react';
 import { FaHome, FaGithub, FaYoutube, FaBookOpen } from 'react-icons/fa';
 import { FaRegFilePdf } from 'react-icons/fa';
 import type { Paper } from './papers';
+import { isArxivUrl } from '../utils/links';
 
 export type PaperLink = { url: string; label: string; icon: React.ReactElement };
 
@@ -9,18 +10,9 @@ export type PaperLink = { url: string; label: string; icon: React.ReactElement }
 // (DOI, publisher, proceedings) for papers without an arXiv version, so the
 // button is labelled by where it actually leads.
 function paperLink(url: string): PaperLink {
-  const isArxiv = /(^|\.)arxiv\.org$/i.test(safeHost(url));
-  return isArxiv
+  return isArxivUrl(url)
     ? { url, label: 'arXiv', icon: <FaRegFilePdf /> }
     : { url, label: 'Paper', icon: <FaBookOpen /> };
-}
-
-function safeHost(url: string): string {
-  try {
-    return new URL(url).hostname;
-  } catch {
-    return '';
-  }
 }
 
 export function getPaperLinks(paper: Paper): PaperLink[] {

@@ -42,44 +42,64 @@ const Y_AXIS_PROPS = { allowDecimals: false, tickLine: false, axisLine: false, t
 // a few categories.
 const BAR_RADIUS: [number, number, number, number] = [4, 4, 0, 0];
 
+type VenueRow = { venue: string } & Record<string, number | string>;
+type PlotData = {
+  venueRows: VenueRow[];
+  years: string[];
+  yearCount: { year: string; count: number }[];
+  keywordCount: { keyword: string; count: number }[];
+};
+
 type StatsPlotProps = {
   suggestions?: Paper[];
   mode?: 'year' | 'venue' | 'keyword';
 };
 
 export default function StatsPlot({ suggestions = [], mode = 'keyword' }: StatsPlotProps) {
-  const { venueRows, years, yearCount, keywordCount } = useMemo(() => {
-    const yearCount: Record<string, number> = {};
-    const yearsSet = new Set<string>();
-    const venueMap: Record<string, { venue: string } & Record<string, number | string>> = {};
+  // Only the current mode's data: the Stats page mounts one StatsPlot per mode,
+  // so computing every mode in each of them would triple the work.
+  const { venueRows, years, yearCount, keywordCount } = useMemo((): PlotData => {
+    const empty: PlotData = { venueRows: [], years: [], yearCount: [], keywordCount: [] };
 
+    if (mode === 'keyword') {
+      // shared ranking, so each bar's colour matches the keyword's trend line
+      return { ...empty, keywordCount: rankKeywords(suggestions) };
+    }
+
+    if (mode === 'year') {
+      // Papers per publication year, from DATE alone (a paper without a venue
+      // still counts; one without a date is skipped instead of crashing).
+      const counts: Record<string, number> = {};
+      suggestions.forEach((item) => {
+        const year = (item.DATE || '').slice(0, 4);
+        if (year) counts[year] = (counts[year] || 0) + 1;
+      });
+      return {
+        ...empty,
+        yearCount: Object.entries(counts)
+          .sort((a, b) => Number(a[0]) - Number(b[0]))
+          .map(([year, count]) => ({ year, count })),
+      };
+    }
+
+    // venue: papers per venue, stacked by the venue's year
+    const yearsSet = new Set<string>();
+    const venueMap: Record<string, VenueRow> = {};
     suggestions.forEach((item) => {
       const venueWithYear = item.VENUE || '';
       if (!venueWithYear) return;
-
       const venue = venueWithYear.slice(0, -2);
       const year = '20' + venueWithYear.slice(-2);
       yearsSet.add(year);
-
-      // venues, stacked by venue year
       const row = (venueMap[venue] ??= { venue });
       row[year] = ((row[year] as number) || 0) + 1;
-
-      // totals per publication-date year
-      const dateYear = item.DATE.slice(0, 4);
-      yearCount[dateYear] = (yearCount[dateYear] || 0) + 1;
     });
-
     return {
+      ...empty,
       venueRows: Object.values(venueMap).sort((a, b) => a.venue.localeCompare(b.venue)),
       years: [...yearsSet].sort((a, b) => Number(a) - Number(b)),
-      yearCount: Object.entries(yearCount)
-        .sort((a, b) => Number(a[0]) - Number(b[0]))
-        .map(([year, count]) => ({ year, count })),
-      // shared ranking, so each bar's colour matches the keyword's trend line
-      keywordCount: rankKeywords(suggestions),
     };
-  }, [suggestions]);
+  }, [suggestions, mode]);
 
   const size = useWindowSize();
   // Show every category label when there is room; on narrow screens let
