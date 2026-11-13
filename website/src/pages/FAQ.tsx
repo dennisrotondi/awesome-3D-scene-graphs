@@ -14,13 +14,18 @@ const FAQ: React.FC = () => {
         (3DSGs). It allows users to search, explore, and contribute to the growing body of knowledge
         in this field. It is a contribution from the paper{' '}
         {SURVEY.comingSoon ? (
-          <>
-            {SURVEY.title} (coming soon)
-          </>
+          <>{SURVEY.title} (coming soon)</>
         ) : (
-          <a href={SURVEY.url} target="_blank" rel="noopener noreferrer">
-            {SURVEY.title}
-          </a>
+          <>
+            <a href={SURVEY.url} target="_blank" rel="noopener noreferrer">
+              {SURVEY.title}
+            </a>{' '}
+            (<i>{SURVEY.journal}</i>, {SURVEY.year}; preprint on{' '}
+            <a href={SURVEY.arxiv} target="_blank" rel="noopener noreferrer">
+              arXiv
+            </a>
+            )
+          </>
         )}
         .
       </p>

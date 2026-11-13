@@ -75,6 +75,7 @@ VENUES = {
     "appis": "Applications of Intelligent Systems (APPIS)",
     "applmech": "J. of Applied Mechanics",
     "ar": "Autonomous Robots",
+    "arcras": "Annual Review of Control, Robotics, and Autonomous Systems",
     "arpb": "Annual review of plant biology",
     "arxiv": "arXiv preprint",
     "biosyseng": "Biosystems Engineering",

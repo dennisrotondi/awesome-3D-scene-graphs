@@ -349,9 +349,14 @@ title {
   color: #3b4248;
 }
 
+/* Same card shape as the paper cards (.card in AdvancedSearch.css), minus the
+   hover lift, since tiles are not clickable. */
 .stat-tile {
-  border: 1px solid rgba(59, 66, 72, 0.15);
-  border-radius: 10px;
+  border: 1px solid rgba(59, 66, 72, 0.08);
+  border-radius: 0.5rem;
+  box-shadow:
+    0 1px 3px rgba(59, 66, 72, 0.08),
+    0 4px 12px rgba(59, 66, 72, 0.06);
   padding: 1rem 0.75rem;
   text-align: center;
   background: #fff;

@@ -11,6 +11,7 @@ import { papers } from '../components/papers';
 import StatsPlot from '../components/StatsPlot';
 import StatTiles from '../components/StatTiles';
 import KeywordTrends from '../components/KeywordTrends';
+import CumulativeChart from '../components/CumulativeChart';
 import PaperGraph from '../components/PaperGraph';
 import TimelinePlot, { type TimelineHandle } from '../components/Timeline';
 import { isBookmarked, onBookmarksChange } from '../utils/bookmarks';
@@ -49,7 +50,9 @@ export default function AdvancedSearch() {
   const [viewMode, setViewMode] = useState<'browse' | 'statistics' | 'timeline' | 'graph'>(
     'browse'
   );
-  const [statsMode, setStatsMode] = useState<'year' | 'venue' | 'keyword' | 'trends'>('year');
+  const [statsMode, setStatsMode] = useState<'year' | 'venue' | 'keyword' | 'growth' | 'trends'>(
+    'year'
+  );
 
   // default bars
   const [searchBars, setSearchBars] = useState([
@@ -360,7 +363,7 @@ export default function AdvancedSearch() {
           variant={viewMode === 'statistics' ? 'primary' : 'outline-primary'}
           onClick={() => setViewMode('statistics')}
         >
-          Year-by-Year
+          Statistics
         </Button>
 
         <Button
@@ -485,7 +488,7 @@ export default function AdvancedSearch() {
               </ButtonGroup>
             )}
 
-            {/* Year-by-Year: chart selector */}
+            {/* Statistics: chart selector */}
             {viewMode === 'statistics' && (
               <ButtonGroup size="sm" className="w-100 w-md-auto flex-wrap">
                 <Button
@@ -505,6 +508,12 @@ export default function AdvancedSearch() {
                   onClick={() => setStatsMode('year')}
                 >
                   Year
+                </Button>
+                <Button
+                  variant={statsMode === 'growth' ? 'outline-secondary' : 'outline-primary'}
+                  onClick={() => setStatsMode('growth')}
+                >
+                  Growth
                 </Button>
                 <Button
                   variant={statsMode === 'trends' ? 'outline-secondary' : 'outline-primary'}
@@ -540,8 +549,12 @@ export default function AdvancedSearch() {
             <div className="mb-4">
               <StatTiles suggestions={suggestions} />
             </div>
+            {/* Each option is the same component as the matching Stats page
+                section, fed the current search results instead of every paper. */}
             {statsMode === 'trends' ? (
               <KeywordTrends suggestions={suggestions} />
+            ) : statsMode === 'growth' ? (
+              <CumulativeChart suggestions={suggestions} />
             ) : (
               <StatsPlot suggestions={suggestions} mode={statsMode} />
             )}

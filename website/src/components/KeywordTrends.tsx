@@ -8,9 +8,13 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  usePlotArea,
+  useXAxisScale,
+  useYAxisScale,
 } from 'recharts';
 import { papers } from './papers';
 import type { Paper } from './papers';
+import { CHART_TOOLTIP_STYLE } from './Constants';
 
 const INK = '#3b4248';
 const TOP_KEYWORDS = 6;
@@ -23,6 +27,87 @@ const MIN_PAPERS_PER_YEAR = 5;
 const TREND_COLORS = ['#A27E6F', '#8CA6A6', '#CDB4DB', '#BFA780', '#B7C4A1', '#D6A99D'];
 
 type YearRow = { year: string } & Record<string, number | string>;
+
+// ==============================================================================
+// End-of-line labels
+// ==============================================================================
+
+// Each line gets a direct label at its last point, so it is identifiable
+// without the legend (the palette alone is not CVD-safe). Keywords often end on
+// the same share: always so for small filtered sets (e.g. an author search),
+// where shares are coarse fractions like 1/3 or 2/3. Labelling each line on its
+// own then prints the names on top of each other, so the labels are laid out
+// together instead:
+//   1. place each label at its line's last point,
+//   2. walk them top to bottom, pushing each one at least END_LABEL_GAP px
+//      below the previous one,
+//   3. if that pushed the stack past the bottom of the plot, walk bottom to
+//      top pulling them back up (never above the top of the plot).
+// A label that had to move gets a short leader in its line's colour, so it
+// still points at the right line end.
+const END_LABEL_GAP = 14; // px between label baselines (12px text + 2px air)
+const END_LABEL_DX = 8; // px from the last point to the label text
+
+function EndLabels({
+  rows,
+  keywords,
+  colorOf,
+}: {
+  rows: YearRow[];
+  keywords: string[];
+  colorOf: (keyword: string) => string;
+}) {
+  const xScale = useXAxisScale();
+  const yScale = useYAxisScale();
+  const plot = usePlotArea();
+  if (!xScale || !yScale || !plot || !rows.length) return null;
+
+  const last = rows[rows.length - 1];
+  const x = xScale(last.year);
+  if (x == null) return null;
+
+  // 1. desired positions, sorted top to bottom (keyword name breaks ties so
+  //    the order is stable across renders)
+  const labels = keywords
+    .map((keyword) => {
+      const pointY = yScale(last[keyword]) ?? plot.y + plot.height;
+      return { keyword, pointY, y: pointY };
+    })
+    .sort((a, b) => a.pointY - b.pointY || a.keyword.localeCompare(b.keyword));
+
+  // 2. push down so no two labels overlap
+  for (let i = 1; i < labels.length; i++) {
+    labels[i].y = Math.max(labels[i].y, labels[i - 1].y + END_LABEL_GAP);
+  }
+  // 3. pull back up if the stack overflows the plot bottom
+  const bottom = plot.y + plot.height;
+  for (let i = labels.length - 1; i >= 0; i--) {
+    const limit = i === labels.length - 1 ? bottom : labels[i + 1].y - END_LABEL_GAP;
+    labels[i].y = Math.max(Math.min(labels[i].y, limit), plot.y);
+  }
+
+  return (
+    <g className="trend-end-labels">
+      {labels.map(({ keyword, pointY, y }) => (
+        <g key={keyword}>
+          {Math.abs(y - pointY) > 1 && (
+            <line
+              x1={x + 3}
+              y1={pointY}
+              x2={x + END_LABEL_DX - 2}
+              y2={y}
+              stroke={colorOf(keyword)}
+              strokeWidth={1}
+            />
+          )}
+          <text x={x + END_LABEL_DX} y={y + 4} fill={INK} fontSize={12}>
+            {keyword}
+          </text>
+        </g>
+      ))}
+    </g>
+  );
+}
 
 export default function KeywordTrends({ suggestions }: { suggestions?: Paper[] }) {
   const items = suggestions ?? papers;
@@ -75,21 +160,8 @@ export default function KeywordTrends({ suggestions }: { suggestions?: Paper[] }
     );
   }
 
-  // Direct label on the last point only, so each line is identifiable
-  // without the legend (the palette alone is not CVD-safe). With few years —
-  // typical for filtered sets — the endpoints coincide and the labels smear
-  // over each other, so fall back to legend + tooltip only.
-  const showEndLabels = rows.length >= 4;
-  const endLabel =
-    (keyword: string) =>
-    ({ x, y, index }: { x?: number; y?: number; index?: number }) => {
-      if (!showEndLabels || index !== rows.length - 1 || x == null || y == null) return null;
-      return (
-        <text x={x + 8} y={y + 4} fill={INK} fontSize={12}>
-          {keyword}
-        </text>
-      );
-    };
+  const colorOf = (keyword: string) =>
+    TREND_COLORS[topKeywords.indexOf(keyword) % TREND_COLORS.length];
 
   return (
     <ResponsiveContainer width="100%" height={320}>
@@ -102,27 +174,23 @@ export default function KeywordTrends({ suggestions }: { suggestions?: Paper[] }
           tick={{ fill: INK, fontSize: 12 }}
         />
         <YAxis unit="%" tickLine={false} axisLine={false} tick={{ fill: INK, fontSize: 12 }} />
-        <Tooltip
-          formatter={(value: number) => `${value}%`}
-          contentStyle={{ fontFamily: "'Ubuntu Sans', sans-serif", color: INK }}
-          itemStyle={{ color: INK }}
-        />
+        <Tooltip formatter={(value: number) => `${value}%`} {...CHART_TOOLTIP_STYLE} />
         <Legend
           wrapperStyle={{ fontSize: 13 }}
           formatter={(value) => <span style={{ color: INK }}>{value}</span>}
         />
-        {topKeywords.map((keyword, idx) => (
+        {topKeywords.map((keyword) => (
           <Line
             key={keyword}
             dataKey={keyword}
-            stroke={TREND_COLORS[idx % TREND_COLORS.length]}
+            stroke={colorOf(keyword)}
             strokeWidth={2}
-            dot={{ r: 3, strokeWidth: 0, fill: TREND_COLORS[idx % TREND_COLORS.length] }}
+            dot={{ r: 3, strokeWidth: 0, fill: colorOf(keyword) }}
             activeDot={{ r: 5 }}
-            label={endLabel(keyword)}
             isAnimationActive={false}
           />
         ))}
+        <EndLabels rows={rows} keywords={topKeywords} colorOf={colorOf} />
       </LineChart>
     </ResponsiveContainer>
   );

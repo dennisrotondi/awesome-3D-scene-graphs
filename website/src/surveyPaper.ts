@@ -1,11 +1,15 @@
 export const GITHUB_REPO = 'https://github.com/DennisRotondi/awesome-3D-scene-graphs';
 
 // === Single source of truth for the survey link ===========================
-// When the preprint is live, set ARXIV_ID to the real id (e.g. '2509.12345')
-// and flip comingSoon to false. The url, pdf and BibTeX eprint below all derive
-// from ARXIV_ID, so that one edit links it everywhere on the site.
+// The survey is published in the Annual Review of Control, Robotics, and
+// Autonomous Systems (ARCRAS), and the preprint stays on arXiv. The journal DOI
+// is the primary link (it is what people should cite); the arXiv abstract and
+// PDF stay as the open-access copy. The url, pdf and BibTeX below all derive
+// from DOI and ARXIV_ID, so that one edit links them everywhere on the site.
+const DOI = '10.1146/annurev-control-031025-014243';
 const ARXIV_ID = '2606.19383';
 const TITLE = '3D Scene Graphs: Open Challenges and Future Directions';
+const JOURNAL = 'Annual Review of Control, Robotics, and Autonomous Systems';
 // "Last, First" order (matches papers/rotondi2026survey.json so the Home cite
 // box and the survey's paper page show the same BibTeX); the surname order also
 // disambiguates the multi-word "Rosenberger Schmid".
@@ -17,14 +21,23 @@ const AUTHORS =
 export const SURVEY = {
   comingSoon: false,
   title: TITLE,
-  url: `https://arxiv.org/abs/${ARXIV_ID}`,
+  journal: JOURNAL,
+  year: 2026,
+  url: `https://doi.org/${DOI}`,
+  arxiv: `https://arxiv.org/abs/${ARXIV_ID}`,
   pdf: `https://arxiv.org/pdf/${ARXIV_ID}`,
   cover: 'preview.svg',
-  bibtex: `@misc{rotondi2026survey,
+  // TODO: once the article leaves "In press" and volume 10 is out (2027), add
+  // `pages`, set `year` to the volume year, and drop the `note` (also in
+  // papers/rotondi2026survey.json, whose VENUE then becomes ARCRAS27).
+  bibtex: `@article{rotondi2026survey,
   title = {${TITLE}},
   author = {${AUTHORS}},
+  journal = {${JOURNAL}},
+  volume = {10},
   year = {2026},
-  eprint = {${ARXIV_ID}},
-  archivePrefix = {arXiv}
+  doi = {${DOI}},
+  publisher = {Annual Reviews},
+  note = {In press}
 }`,
 };

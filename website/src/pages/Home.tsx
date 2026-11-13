@@ -1,6 +1,6 @@
 import { ToastContainer, Toast, Container, Row, Col, Image } from 'react-bootstrap';
 import React, { useState } from 'react';
-import { FaFilePdf, FaCopy } from 'react-icons/fa';
+import { FaFilePdf, FaCopy, FaBookOpen } from 'react-icons/fa';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchBar from '../components/SearchBar';
 import { useNavigate } from 'react-router-dom';
@@ -143,6 +143,17 @@ function Home() {
             <Col xs="auto">
               <a
                 href={SURVEY.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="d-flex align-items-center text-font-base"
+                title={SURVEY.journal}
+              >
+                <FaBookOpen className="me-1" /> Journal
+              </a>
+            </Col>
+            <Col xs="auto">
+              <a
+                href={SURVEY.arxiv}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="d-flex align-items-center text-font-base"

@@ -3,19 +3,48 @@ import { useWindowSize } from '@uidotdev/usehooks';
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
+  Cell,
   ResponsiveContainer,
 } from 'recharts';
 
-import { YEAR_COLORS, CHART_ASPECT_RATIO } from './Constants';
-
-const BAR_CHART_MARGIN = { top: 5, right: 0, left: -20, bottom: 42 };
-const BAR_CHART_X_PADDING = { left: 0, right: 20 };
+import {
+  CHART_GREEN,
+  CHART_GREEN_DARK,
+  CHART_INK,
+  CHART_GRID,
+  CHART_AXIS,
+  CHART_CURSOR,
+  CHART_TOOLTIP_STYLE,
+  YEAR_COLORS,
+} from './Constants';
 import type { Paper } from './papers';
+
+// Fixed height (same for every mode, so toggling doesn't make the page jump)
+// and the same margins as the other dashboard charts. A golden-ratio aspect
+// made this chart ~720px tall on desktop, dwarfing the sections around it.
+const BREAKDOWN_HEIGHT = 380;
+const BAR_CHART_MARGIN = { top: 8, right: 8, left: -24, bottom: 0 };
+const BAR_CHART_X_PADDING = { left: 0, right: 20 };
+
+// Same recessive axis/grid/tooltip styling as the Stats page charts
+// (GrowthChart, cumulative growth), so this view and that page read as one.
+const GRID_PROPS = { strokeDasharray: '3 3', vertical: false, stroke: CHART_GRID };
+const TICK = { fill: CHART_INK, fontSize: 12 };
+const Y_AXIS_PROPS = { allowDecimals: false, tickLine: false, axisLine: false, tick: TICK };
+// Single-series bars (keyword totals): main green fill, deeper green edge for
+// contrast on white. The multi-colour charts (venue stacked by year, per-year
+// bars) intentionally keep the YEAR_COLORS palette.
+// No maxBarSize here (unlike GrowthChart): breakdown bars fill their band, so
+// they stay wide when a search leaves only a few categories.
+const SINGLE_BAR_PROPS = {
+  fill: CHART_GREEN,
+  stroke: CHART_GREEN_DARK,
+  radius: [4, 4, 0, 0] as [number, number, number, number],
+};
 
 type StatsPlotProps = {
   suggestions?: Paper[];
@@ -23,38 +52,31 @@ type StatsPlotProps = {
 };
 
 export default function StatsPlot({ suggestions = [], mode = 'keyword' }: StatsPlotProps) {
-  const {
-    data: venues,
-    years,
-    yearCount,
-    keywordCount,
-  } = useMemo(() => {
-    const yearCount = {};
-    const keywordCount = {};
-    const yearsSet = new Set();
-    const venueMap = {};
+  const { venueRows, years, yearCount, keywordCount } = useMemo(() => {
+    const yearCount: Record<string, number> = {};
+    const keywordCount: Record<string, number> = {};
+    const yearsSet = new Set<string>();
+    const venueMap: Record<string, { venue: string } & Record<string, number | string>> = {};
 
     suggestions.forEach((item) => {
-      const venue_year = item.VENUE || '';
-      if (!venue_year) return;
+      const venueWithYear = item.VENUE || '';
+      if (!venueWithYear) return;
       const keywords = (item.KEYWORD || '')
         .split(',')
         .map((k) => k.trim())
         .filter(Boolean);
 
-      const venue = venue_year.slice(0, -2);
-      const year = '20' + venue_year.slice(-2);
-      const year_original = item.DATE.slice(0, 4);
-
+      const venue = venueWithYear.slice(0, -2);
+      const year = '20' + venueWithYear.slice(-2);
       yearsSet.add(year);
 
-      if (!venueMap[venue]) {
-        venueMap[venue] = { venue };
-      }
-      venueMap[venue][year] = (venueMap[venue][year] || 0) + 1;
+      // venues, stacked by venue year
+      const row = (venueMap[venue] ??= { venue });
+      row[year] = ((row[year] as number) || 0) + 1;
 
-      // year totals
-      yearCount[year_original] = (yearCount[year_original] || 0) + 1;
+      // totals per publication-date year
+      const dateYear = item.DATE.slice(0, 4);
+      yearCount[dateYear] = (yearCount[dateYear] || 0) + 1;
 
       // keyword totals
       keywords.forEach((keyword) => {
@@ -62,29 +84,22 @@ export default function StatsPlot({ suggestions = [], mode = 'keyword' }: StatsP
       });
     });
 
-    // venues (stacked by year)
-    const yearsArr = [...yearsSet].sort((a, b) => Number(a) - Number(b));
-    const rows = Object.values(venueMap).sort((a, b) => a.venue.localeCompare(b.venue));
-
-    // totals per year
-    const yearCountRows = Object.entries(yearCount)
-      .sort((a, b) => Number(a[0]) - Number(b[0]))
-      .map(([year, count]) => ({ year, count }));
-
-    // totals per keyword (optionally limit to top N)
-    const keywordCountRows = Object.entries(keywordCount)
-      .sort((a, b) => b[1] - a[1])
-      .map(([keyword, count]) => ({ keyword, count }));
-
     return {
-      data: rows,
-      years: yearsArr,
-      yearCount: yearCountRows,
-      keywordCount: keywordCountRows,
+      venueRows: Object.values(venueMap).sort((a, b) => a.venue.localeCompare(b.venue)),
+      years: [...yearsSet].sort((a, b) => Number(a) - Number(b)),
+      yearCount: Object.entries(yearCount)
+        .sort((a, b) => Number(a[0]) - Number(b[0]))
+        .map(([year, count]) => ({ year, count })),
+      keywordCount: Object.entries(keywordCount)
+        .sort((a, b) => b[1] - a[1])
+        .map(([keyword, count]) => ({ keyword, count })),
     };
   }, [suggestions]);
 
   const size = useWindowSize();
+  // Show every category label when there is room; on narrow screens let
+  // recharts thin them out.
+  const xInterval = (size.width ?? 0) >= 789 ? { interval: 0 } : {};
 
   if (!suggestions.length) {
     return <div></div>;
@@ -92,19 +107,22 @@ export default function StatsPlot({ suggestions = [], mode = 'keyword' }: StatsP
 
   if (mode === 'venue') {
     return (
-      <ResponsiveContainer width="100%" aspect={CHART_ASPECT_RATIO}>
-        <BarChart data={venues} margin={BAR_CHART_MARGIN}>
-          <CartesianGrid strokeDasharray="3 3" />
+      <ResponsiveContainer width="100%" height={BREAKDOWN_HEIGHT}>
+        <BarChart data={venueRows} margin={BAR_CHART_MARGIN}>
+          <CartesianGrid {...GRID_PROPS} />
           <XAxis
             dataKey="venue"
-            {...(size.width >= 789 ? { interval: 0 } : {})}
+            {...xInterval}
             angle={-45}
             textAnchor="end"
-            height={60}
+            height={70}
             padding={BAR_CHART_X_PADDING}
+            tickLine={false}
+            axisLine={{ stroke: CHART_AXIS }}
+            tick={TICK}
           />
-          <YAxis />
-          <Tooltip />
+          <YAxis {...Y_AXIS_PROPS} />
+          <Tooltip cursor={{ fill: CHART_CURSOR }} {...CHART_TOOLTIP_STYLE} />
           {years.map((year, idx) => (
             <Bar
               key={year}
@@ -120,20 +138,23 @@ export default function StatsPlot({ suggestions = [], mode = 'keyword' }: StatsP
 
   if (mode === 'keyword') {
     return (
-      <ResponsiveContainer width="100%" aspect={CHART_ASPECT_RATIO}>
+      <ResponsiveContainer width="100%" height={BREAKDOWN_HEIGHT}>
         <BarChart data={keywordCount} margin={BAR_CHART_MARGIN}>
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid {...GRID_PROPS} />
           <XAxis
             dataKey="keyword"
-            {...(size.width >= 789 ? { interval: 0 } : {})}
+            {...xInterval}
             angle={-45}
             textAnchor="end"
-            height={80} // a bit more room for longer keywords
+            height={100} // a bit more room for longer keywords
             padding={BAR_CHART_X_PADDING}
+            tickLine={false}
+            axisLine={{ stroke: CHART_AXIS }}
+            tick={TICK}
           />
-          <YAxis />
-          <Tooltip itemStyle={{ color: 'black' }} />
-          <Bar dataKey="count" fill={YEAR_COLORS[8]} />
+          <YAxis {...Y_AXIS_PROPS} />
+          <Tooltip cursor={{ fill: CHART_CURSOR }} {...CHART_TOOLTIP_STYLE} />
+          <Bar dataKey="count" name="Papers" {...SINGLE_BAR_PROPS} />
         </BarChart>
       </ResponsiveContainer>
     );
@@ -141,21 +162,20 @@ export default function StatsPlot({ suggestions = [], mode = 'keyword' }: StatsP
 
   if (mode === 'year') {
     return (
-      <ResponsiveContainer width="100%" aspect={CHART_ASPECT_RATIO}>
+      <ResponsiveContainer width="100%" height={BREAKDOWN_HEIGHT}>
         <BarChart data={yearCount} margin={BAR_CHART_MARGIN}>
-          <CartesianGrid strokeDasharray="3 3" />
+          <CartesianGrid {...GRID_PROPS} />
           <XAxis
             dataKey="year"
-            {...(size.width >= 789 ? { interval: 0 } : {})}
-            angle={-45}
-            textAnchor="end"
-            height={60}
             padding={BAR_CHART_X_PADDING}
+            tickLine={false}
+            axisLine={{ stroke: CHART_AXIS }}
+            tick={TICK}
           />
-          <YAxis />
-          <Tooltip />
-
-          <Bar dataKey="count">
+          <YAxis {...Y_AXIS_PROPS} />
+          <Tooltip cursor={{ fill: CHART_CURSOR }} {...CHART_TOOLTIP_STYLE} />
+          {/* Per-year colours kept; wide bars with the site's rounded tops */}
+          <Bar dataKey="count" name="Papers" radius={[4, 4, 0, 0]}>
             {yearCount.map((entry, index) => (
               <Cell key={entry.year} fill={YEAR_COLORS[index % YEAR_COLORS.length]} />
             ))}

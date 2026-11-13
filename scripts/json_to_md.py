@@ -63,7 +63,8 @@ README_HEADER = """\
 A curated list of papers on 3D Scene Graphs (3DSGs), covering generation and applications \
 such as autonomous navigation, robotic manipulation, scene understanding, path planning, and multi-robot collaboration.
 
-This repository accompanies the survey paper **["3D Scene Graphs: Open Challenges and Future Directions"](https://arxiv.org/abs/2606.19383)**, \
+This repository accompanies the survey paper **["3D Scene Graphs: Open Challenges and Future Directions"](https://doi.org/10.1146/annurev-control-031025-014243)**, \
+published in the *Annual Review of Control, Robotics, and Autonomous Systems* ([arXiv](https://arxiv.org/abs/2606.19383)), \
 a comprehensive review of the 3DSG literature. \
 It also contains the source code for the companion website at [3dscenegraphs.com](https://3dscenegraphs.com). \
 The paper database lives in the [`papers/`](papers) folder (one JSON file per paper) and drives both this README and the website. \

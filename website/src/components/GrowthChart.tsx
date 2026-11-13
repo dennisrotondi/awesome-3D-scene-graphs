@@ -1,10 +1,15 @@
 import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { papers } from './papers';
-
-// Deeper rose from YEAR_COLORS: the only palette step with >= 3:1 contrast on white.
-const BAR_COLOR = '#A27E6F';
-const INK = '#3b4248';
+import {
+  CHART_GREEN,
+  CHART_GREEN_DARK,
+  CHART_INK,
+  CHART_GRID,
+  CHART_AXIS,
+  CHART_CURSOR,
+  CHART_TOOLTIP_STYLE,
+} from './Constants';
 
 export default function GrowthChart() {
   const yearCount = useMemo(() => {
@@ -24,28 +29,25 @@ export default function GrowthChart() {
   return (
     <ResponsiveContainer width="100%" height={220}>
       <BarChart data={yearCount} margin={{ top: 8, right: 8, left: -24, bottom: 0 }}>
-        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(59,66,72,0.15)" />
+        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke={CHART_GRID} />
         <XAxis
           dataKey="year"
           tickLine={false}
-          axisLine={{ stroke: 'rgba(59,66,72,0.25)' }}
-          tick={{ fill: INK, fontSize: 12 }}
+          axisLine={{ stroke: CHART_AXIS }}
+          tick={{ fill: CHART_INK, fontSize: 12 }}
         />
         <YAxis
           allowDecimals={false}
           tickLine={false}
           axisLine={false}
-          tick={{ fill: INK, fontSize: 12 }}
+          tick={{ fill: CHART_INK, fontSize: 12 }}
         />
-        <Tooltip
-          cursor={{ fill: 'rgba(156, 175, 170, 0.15)' }}
-          contentStyle={{ fontFamily: "'Ubuntu Sans', sans-serif", color: INK }}
-          itemStyle={{ color: INK }}
-        />
+        <Tooltip cursor={{ fill: CHART_CURSOR }} {...CHART_TOOLTIP_STYLE} />
         <Bar
           dataKey="count"
           name="Papers"
-          fill={BAR_COLOR}
+          fill={CHART_GREEN}
+          stroke={CHART_GREEN_DARK}
           radius={[4, 4, 0, 0]}
           maxBarSize={38}
           animationDuration={1200}
