@@ -4,7 +4,7 @@
   "DATE": "2025/03/03",
   "AUTHOR": "Ali Tourani, Saad Ejaz, Hriday Bavle, David Morilla-Cabello, Jose Luis Sanchez-Lopez, Holger Voos",
   "ABSTRACT": "Current Visual Simultaneous Localization and Mapping (VSLAM) systems often struggle to create maps that are both semantically rich and easily interpretable. While incorporating semantic scene knowledge aids in building richer maps with contextual associations among mapped objects, representing them in structured formats like scene graphs has not been widely addressed, encountering complex map comprehension and limited scalability. This paper introduces visual S-Graphs (vS-Graphs), a novel real-time VSLAM framework that integrates vision-based scene understanding with map reconstruction and comprehensible graph-based representation. The framework infers structural elements (i.e., rooms and corridors) from detected building components (i.e., walls and ground surfaces) and incorporates them into optimizable 3D scene graphs. This solution enhances the reconstructed map's semantic richness, comprehensibility, and localization accuracy. Extensive experiments on standard benchmarks and real-world datasets demonstrate that vS-Graphs outperforms state-of-the-art VSLAM methods, reducing trajectory error by an average of 3.38% and up to 9.58% on real-world data. Furthermore, the proposed framework achieves environment-driven semantic entity detection accuracy comparable to precise LiDAR-based frameworks using only visual features.",
-  "ARXIV": "https://www.arxiv.org/abs/2503.01783",
+  "ARXIV": "https://arxiv.org/abs/2503.01783",
   "FIRSTINSTITUTE": "UniLu",
   "KEYWORD": "Application, SUN, SLAM, Real-Time, RGB-D, Incremental, Hierarchical",
   "SITE": "https://snt-arg.github.io/vsgraphs-results/",

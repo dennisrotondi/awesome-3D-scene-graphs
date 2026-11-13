@@ -4,7 +4,7 @@
   "DATE": "2025/06/09",
   "AUTHOR": "Jared Strader, Aaron Ray, Jacob Arkin, Mason B. Peterson, Yun Chang, Nathan Hughes, Christopher Bradley, Yi Xuan Jia, Carlos Nieto-Granda, Rajat Talak, Chuchu Fan, Luca Carlone, Jonathan P. How, Nicholas Roy",
   "ABSTRACT": "In this paper, we introduce a multi-robot system that integrates mapping, localization, and task and motion planning (TAMP) enabled by 3D scene graphs to execute complex instructions expressed in natural language. Our system builds a shared 3D scene graph incorporating an open-set object-based map, which is leveraged for multi-robot 3D scene graph fusion. This representation supports real-time, view-invariant relocalization (via the object-based map) and planning (via the 3D scene graph), allowing a team of robots to reason about their surroundings and execute complex tasks. Additionally, we introduce a planning approach that translates operator intent into Planning Domain Definition Language (PDDL) goals using a Large Language Model (LLM) by leveraging context from the shared 3D scene graph and robot capabilities. We provide an experimental assessment of the performance of our system on real-world tasks in large-scale, outdoor environments.",
-  "ARXIV": "https://www.arxiv.org/abs/2506.07454",
+  "ARXIV": "https://arxiv.org/abs/2506.07454",
   "FIRSTINSTITUTE": "MIT",
   "KEYWORD": "Application, Multi-Robot, Outdoor, LiDAR, Hierarchical, Planning, Navigation, SLAM, Open-Vocabulary, Incremental",
   "SITE": "",

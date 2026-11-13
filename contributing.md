@@ -30,6 +30,7 @@ Each entry follows this structure:
 **Field notes:**
 - `VENUE`: venue abbreviation + 2-digit year (e.g. `IROS25`, `RAL24`, `arXiv25`)
 - `DATE`: format `YYYY/MM/DD` using the publication or arXiv submission date
+- `ARXIV`: the arXiv abstract link, exactly `https://arxiv.org/abs/XXXX.XXXXX` (no `www.`, `/pdf/` or version suffix); if the paper is not on arXiv, the link to the published version (DOI, publisher page, proceedings) instead
 - `KEYWORD`: comma-separated from the controlled list in [`scripts/constants.py`](scripts/constants.py), use the exact casing shown there
 - `BIBTEX`: paste the BibTeX entry; leave as `""` only if unavailable
 - `SITE`, `CODE`, `VIDEO`: leave as `""` if not available
@@ -43,7 +44,7 @@ When you open a PR, a GitHub Action validates every paper file you changed. It c
 - is valid UTF-8 JSON with **exactly** the fields above (a missing or misspelled key fails);
 - has a non-empty `TITLE`, `VENUE`, `DATE`, `AUTHOR`, `ABSTRACT`, `ARXIV`, and `FIRSTINSTITUTE`;
 - uses `DATE` as `YYYY/MM/DD` (a real, non-future date), `VENUE` ending in a 2-digit year, and `KEYWORD`s drawn exactly (casing included) from [`scripts/constants.py`](scripts/constants.py);
-- has well-formed `http(s)` links, and a `BIBTEX` entry starting with `@`;
+- has well-formed `http(s)` links (an arXiv link in `ARXIV` in the `https://arxiv.org/abs/<id>` form), and a `BIBTEX` entry starting with `@`;
 - is not a duplicate of an existing entry — by arXiv id, or by title when the link is a proceedings/journal page with no arXiv id;
 - changes exactly **one** paper — open a separate PR per paper.
 

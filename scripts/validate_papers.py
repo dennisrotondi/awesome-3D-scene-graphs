@@ -53,6 +53,7 @@ URL_FIELDS = ("ARXIV", "SITE", "CODE", "VIDEO")
 DATE_RE = re.compile(r"^[0-9]{4}/[0-9]{2}/[0-9]{2}$")
 FNAME_RE = re.compile(r"^[A-Za-z0-9_]+\.json$")
 ARXIV_ID_RE = re.compile(r"arxiv\.org/(?:abs|pdf)/([0-9]{4}\.[0-9]{4,6})")
+ARXIV_CANON_RE = re.compile(r"^https://arxiv\.org/abs/[0-9]{4}\.[0-9]{4,5}$")
 BIB_HEADER_RE = re.compile(r"@(\w+)\s*\{\s*([^,]+),")
 TITLE_NORM_RE = re.compile(r"[^a-z0-9]+")
 
@@ -306,15 +307,16 @@ def validate_file(path: Path, arxiv_to_files: dict[str, list[str]],
         if val and not is_http_url(val):
             err(name, f"{k} is not a valid http(s) URL: {val!r}")
 
-    # --- ARXIV: present + valid URL already enforced above (REQUIRED_NONEMPTY +
-    #     URL_FIELDS), so an empty or non-URL value already errored. Here we only
-    #     warn if it's a valid URL that just isn't an arxiv.org link, so non-arXiv
-    #     papers still pass CI while the oddity stays visible. ---
+    # --- ARXIV: the paper's link -- its arXiv abstract page, or the published
+    #     version (DOI, publisher, proceedings) when it has no arXiv version.
+    #     Present + valid URL is already enforced above (REQUIRED_NONEMPTY +
+    #     URL_FIELDS). An arXiv link must use the one canonical form, so the
+    #     duplicate check and the citation lookup see the same id everywhere. ---
     ax = sval("ARXIV")
-    if ax and is_http_url(ax):
-        host = urlparse(ax).netloc.lower()
-        if not (host == "arxiv.org" or host.endswith(".arxiv.org")):
-            warn(name, f"ARXIV is a valid URL but not an arxiv.org link: {ax!r}")
+    if ax and is_http_url(ax) and "arxiv.org" in urlparse(ax).netloc.lower():
+        if not ARXIV_CANON_RE.match(ax):
+            err(name, f"ARXIV arXiv links must be https://arxiv.org/abs/<id> "
+                      f"(no www., /pdf/ or version suffix): {ax!r}")
 
     # --- BIBTEX: optional; if present must be well-formed and stay coherent with
     #     the structured fields (above all VENUE -- see validate_bibtex). ---
@@ -333,7 +335,7 @@ def validate_file(path: Path, arxiv_to_files: dict[str, list[str]],
             err(name, f"duplicate arXiv id {m.group(1)} (also in {', '.join(sorted(others))})")
 
     # --- duplicate title across the whole folder (the fallback for papers whose
-    #     ARXIV is a proceedings/journal link with no arXiv id to compare) ---
+    #     ARXIV is a published-version link with no arXiv id to compare) ---
     nt = norm_title(sval("TITLE"))
     if nt:
         others = [f for f in title_to_files.get(nt, []) if f != name]

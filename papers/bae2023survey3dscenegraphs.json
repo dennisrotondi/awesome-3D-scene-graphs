@@ -4,7 +4,7 @@
   "DATE": "2023/03/01",
   "AUTHOR": "Jaewon Bae, Dongmin Shin, Kangbeen Ko, Juchan Lee, Ue-Hwan Kim",
   "ABSTRACT": "With the advancement of intelligent agents, 3D scene understanding has become one of key tasks of computer vision. 3D scene understanding is challenging to represent effectively because objects form various relationships and constantly interact with each other. A scene graph is a powerful tool to concisely represent the properties and relationships of objects in a scene—enabling various multi-modal tasks. Therefore, research on 3D scene graph (3DSG) is attracting increasing attention. However, 3DSG research is in its early stage—requiring a systematically organized survey. In this paper, we survey the latest advancement of 3DSG. In addition, we clarify 3DSG concepts that are currently defined in various ways, provide real-world applicability and present future research directions.",
-  "ARXIV": "https://link.springer.com/chapter/10.1007/978-3-031-26889-2_13#citeas",
+  "ARXIV": "https://link.springer.com/chapter/10.1007/978-3-031-26889-2_13",
   "FIRSTINSTITUTE": "GIST",
   "KEYWORD": "",
   "SITE": "",

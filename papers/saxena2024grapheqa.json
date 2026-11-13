@@ -4,7 +4,7 @@
   "DATE": "2024/12/19",
   "AUTHOR": "Saumya Saxena, Blake Buchanan, Chris Paxton, Bingqing Chen, Narunas Vaskevicius, Luigi Palmieri, Jonathan Francis, Oliver Kroemer",
   "ABSTRACT": "In Embodied Question Answering (EQA), agents must explore and develop a semantic understanding of an unseen environment in order to answer a situated question with confidence. This remains a challenging problem in robotics, due to the difficulties in obtaining useful semantic representations, updating these representations online, and leveraging prior world knowledge for efficient exploration and planning. Aiming to address these limitations, we propose GraphEQA, a novel approach that utilizes real-time 3D metric-semantic scene graphs (3DSGs) and task relevant images as multi-modal memory for grounding Vision-Language Models (VLMs) to perform EQA tasks in unseen environments. We employ a hierarchical planning approach that exploits the hierarchical nature of 3DSGs for structured planning and semantic-guided exploration. Through experiments in simulation on the HM-EQA dataset and in the real world in home and office environments, we demonstrate that our method outperforms key baselines by completing EQA tasks with higher success rates and fewer planning steps.",
-  "ARXIV": "https://www.arxiv.org/abs/2412.14480",
+  "ARXIV": "https://arxiv.org/abs/2412.14480",
   "FIRSTINSTITUTE": "CMU",
   "KEYWORD": "Application, SUN, LLM, RGB-D, Indoor, Planning, Hierarchical",
   "SITE": "https://saumyasaxena.github.io/grapheqa/",

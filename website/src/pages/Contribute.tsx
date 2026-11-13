@@ -96,6 +96,15 @@ const Contribute: React.FC = () => {
       }
     });
 
+    // ARXIV: an arXiv link must be the canonical abstract link (same rule as
+    // scripts/validate_papers.py); a published-version link is fine as is.
+    if (
+      /arxiv\.org/i.test(paper.ARXIV) &&
+      !/^https:\/\/arxiv\.org\/abs\/\d{4}\.\d{4,5}$/.test(paper.ARXIV.trim())
+    ) {
+      newErrors.ARXIV = 'Use https://arxiv.org/abs/<id> for arXiv links';
+    }
+
     // DATE simple format check YYYY/MM/DD
     if (paper.DATE && !/^\d{4}\/\d{2}\/\d{2}$/.test(paper.DATE)) {
       newErrors.DATE = 'Use YYYY/MM/DD';
@@ -303,7 +312,7 @@ const Contribute: React.FC = () => {
           <Row>
             <Col md={6} className="mb-3">
               <Form.Group controlId="formArxiv">
-                <Form.Label>ARXIV (link)</Form.Label>
+                <Form.Label>ARXIV (arXiv link, or published link if not on arXiv)</Form.Label>
                 <Form.Control
                   name="ARXIV"
                   value={paper.ARXIV}

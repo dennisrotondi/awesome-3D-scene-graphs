@@ -4,7 +4,7 @@
   "DATE": "2026/07/11",
   "AUTHOR": "Hyungtae Lim, Nathan Hughes, Xihang Yu, Ruihan Xu, Yun Chang, Jingnan Shi, Rajat Talak, Luca Carlone",
   "ABSTRACT": "3D scene graphs provide a hierarchical abstraction of environments by encoding spatial entities and their relationships. Existing scene graph systems usually model object geometry with partial point clouds or class-level CAD templates, limiting instance-specific shape detail. Hydra++ integrates category-agnostic shape estimation into a hierarchical 3D scene graph pipeline, adds a reprojection-mask consistency check to reject degenerate shape predictions, and supports a hybrid LiDAR-camera configuration for large-scale outdoor operation. Experiments in simulation and real-world outdoor scenes show improved object-level and scene-level reconstruction quality.",
-  "ARXIV": "https://hydra-plusplus.github.io/static/pdfs/hydra-plusplus.pdf",
+  "ARXIV": "https://arxiv.org/abs/2607.09455",
   "FIRSTINSTITUTE": "MIT",
   "KEYWORD": "RGB-D, LiDAR, Hierarchical, Real-Time, SLAM, Indoor, Outdoor, Incremental",
   "SITE": "https://hydra-plusplus.github.io/",
