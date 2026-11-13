@@ -17,6 +17,11 @@ import {
   ReferenceArea,
   Scatter,
   Cell,
+  DefaultZIndexes,
+  ZIndexLayer,
+  useXAxisScale,
+  useYAxisScale,
+  type ScaleFunction,
 } from 'recharts';
 import {
   YEAR_COLORS,
@@ -25,6 +30,7 @@ import {
   THREE_YEARS_DAYS,
   ZOOM_WHEEL_FACTOR,
   CHART_ASPECT_RATIO,
+  CHART_INK,
   formatDate,
 } from './Constants';
 
@@ -56,6 +62,9 @@ type TimelineDotProps = {
 
 type HoveredPoint = {
   paperId: string;
+  x: number;
+  y: number;
+  fill: string;
   title: string;
   author: string;
   venue: string;
@@ -71,6 +80,11 @@ const AXIS_PADDING = 15;
 const CHART_MARGIN_LEFT = 40;
 const CHART_MARGIN_RIGHT = 20;
 
+const getColorForYear = (year: number) => YEAR_COLORS[year % YEAR_COLORS.length];
+
+// Smaller dots when zoomed out, where many papers share little space.
+const dotRadius = (rangeDays: number) => (rangeDays > FIVE_YEARS_DAYS ? 6 : 8);
+
 const TimelineDot = React.memo(function TimelineDot({
   cx,
   cy,
@@ -79,7 +93,7 @@ const TimelineDot = React.memo(function TimelineDot({
   dotCursor = 'pointer',
 }: TimelineDotProps) {
   if (cx == null || cy == null) return null;
-  const r = currentRangeDays > FIVE_YEARS_DAYS ? 6 : 8;
+  const r = dotRadius(currentRangeDays);
 
   return (
     <g style={{ cursor: dotCursor }}>
@@ -88,6 +102,55 @@ const TimelineDot = React.memo(function TimelineDot({
     </g>
   );
 });
+
+// ==============================================================================
+// Papers published on the same day
+// ==============================================================================
+
+// A paper's height is its rank among all papers, so neighbours sit 1/N of the
+// chart apart (~2px for 257 papers), and papers published on the same day share
+// an x position. Zooming only the date axis therefore left same-day papers
+// stacked on top of each other at every zoom level, and the date-only hover
+// always picked the first of them. Three pieces fix that:
+//   1. the hidden y-axis is fitted to the ranks currently in view, so zooming
+//      in also spreads the visible papers over the full chart height and a
+//      same-day group opens up into a vertical column;
+//   2. hover picks the nearest dot in both directions, from the chart's live
+//      scales, so every paper of a stack can be reached;
+//   3. the hovered paper gets a ring drawn above all dots, so it is clear which
+//      paper a click will open.
+const HOVER_RADIUS = 20; // px from a dot's centre that still counts as hovering it
+
+type ChartScales = { x: ScaleFunction; y: ScaleFunction };
+
+// The mouse handlers live on the wrapper div, outside the chart, where
+// recharts' hooks are not available; this child hands them the live scales.
+function ScaleProbe({ scalesRef }: { scalesRef: React.MutableRefObject<ChartScales | null> }) {
+  const x = useXAxisScale();
+  const y = useYAxisScale();
+  useEffect(() => {
+    scalesRef.current = x && y ? { x, y } : null;
+  });
+  return null;
+}
+
+// Redraws the hovered dot with a ring, one layer above the scatter dots.
+function HoverRing({ point, r }: { point: HoveredPoint | null; r: number }) {
+  const xScale = useXAxisScale();
+  const yScale = useYAxisScale();
+  if (!point || !xScale || !yScale) return null;
+  const cx = xScale(point.x);
+  const cy = yScale(point.y);
+  if (cx == null || cy == null) return null;
+  return (
+    <ZIndexLayer zIndex={DefaultZIndexes.scatter + 1}>
+      <g pointerEvents="none">
+        <circle cx={cx} cy={cy} r={r} fill={point.fill} stroke="white" strokeWidth={1} />
+        <circle cx={cx} cy={cy} r={r + 4} fill="none" stroke={CHART_INK} strokeWidth={2} />
+      </g>
+    </ZIndexLayer>
+  );
+}
 
 // Throttle helper for smoother wheel zooming
 const throttle = <T extends unknown[]>(fn: (...args: T) => void, delay: number) => {
@@ -186,6 +249,15 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
     [baseData, currentLeft, currentRight]
   );
 
+  // 1. Fit the hidden y-axis to the ranks in view, with one rank of headroom on
+  //    each side. At full zoom this is the old [0, 1] domain.
+  const rankStep = baseData.length ? 1 / baseData.length : 1;
+  const yDomain: [number, number] = visibleData.length
+    ? [(visibleData[0].y ?? 0) - rankStep, (visibleData[visibleData.length - 1].y ?? 1) + rankStep]
+    : [0, 1];
+
+  const scalesRef = useRef<ChartScales | null>(null);
+
   const monthTicks =
     rangeDays <= THREE_YEARS_DAYS && rangeDays > 90
       ? (() => {
@@ -265,29 +337,33 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
       return;
     }
 
-    const rect = e.currentTarget.getBoundingClientRect();
-    const plotWidth = rect.width - CHART_MARGIN_LEFT - CHART_MARGIN_RIGHT - AXIS_PADDING * 2;
-    const domainRange = currentRight - currentLeft;
-    if (domainRange <= 0 || plotWidth <= 0 || visibleData.length === 0) return;
+    // 2. Nearest dot in both directions, measured in the chart's own pixels.
+    const scales = scalesRef.current;
+    const surface = e.currentTarget.querySelector('svg.recharts-surface');
+    if (!scales || !surface || visibleData.length === 0) return;
+    const rect = surface.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
 
     let nearest: TimelineDataPoint | null = null;
     let minDist = Infinity;
     for (const point of visibleData) {
-      const px =
-        rect.left +
-        CHART_MARGIN_LEFT +
-        AXIS_PADDING +
-        ((point.x - currentLeft) / domainRange) * plotWidth;
-      const dist = Math.abs(e.clientX - px);
+      const px = scales.x(point.x);
+      const py = scales.y(point.y);
+      if (px == null || py == null) continue;
+      const dist = Math.hypot(mouseX - px, mouseY - py);
       if (dist < minDist) {
         minDist = dist;
         nearest = point;
       }
     }
 
-    if (nearest && minDist < 20) {
+    if (nearest && minDist <= HOVER_RADIUS) {
       setHoveredPoint({
         paperId: nearest.paperId,
+        x: nearest.x,
+        y: nearest.y ?? 0,
+        fill: getColorForYear(nearest.year),
         title: nearest.title,
         author: nearest.author,
         venue: nearest.venue,
@@ -386,8 +462,6 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
     return `${y}-${m}-${day}`;
   };
 
-  const getColorForYear = (year: number) => YEAR_COLORS[year % YEAR_COLORS.length];
-
   const spanLabel =
     rangeDays > 730
       ? `${Math.round(rangeDays / 365)} Years`
@@ -444,19 +518,20 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
               textAnchor="end"
             />
 
-            <YAxis type="number" dataKey="y" domain={[0, 1]} hide />
+            <YAxis type="number" dataKey="y" domain={yDomain} allowDataOverflow hide />
 
             {refAreaLeft != null && refAreaRight != null && (
               <ReferenceArea
                 x1={refAreaLeft}
                 x2={refAreaRight}
-                y1={0}
-                y2={1}
+                y1={yDomain[0]}
+                y2={yDomain[1]}
                 fill="#a5b4fc"
                 fillOpacity={0.25}
                 stroke="#6366f1"
                 strokeOpacity={0.8}
-                isFront={true}
+                // recharts 3 dropped `isFront`: draw the selection above the dots
+                zIndex={DefaultZIndexes.scatter + 1}
               />
             )}
 
@@ -471,6 +546,10 @@ const TimelinePlot = forwardRef<TimelineHandle, TimelinePlotProps>(function Time
                 <Cell key={p.id} fill={getColorForYear(p.year)} />
               ))}
             </Scatter>
+
+            {/* 3. ring on the hovered paper, above every dot */}
+            <HoverRing point={hoveredPoint} r={dotRadius(rangeDays)} />
+            <ScaleProbe scalesRef={scalesRef} />
           </ScatterChart>
         </ResponsiveContainer>
       </div>

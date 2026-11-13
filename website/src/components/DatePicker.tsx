@@ -115,7 +115,7 @@ export class DatePicker extends React.Component<DatePickerProps, DatePickerState
     }
   };
 
-  handleKeyDown = (event: KeyboardEvent) => {
+  handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Escape') {
       this.setState({ showToast: false });
     }
@@ -149,7 +149,7 @@ export class DatePicker extends React.Component<DatePickerProps, DatePickerState
       // We target all navigable inputs. Your DatePicker input already has
       // "react-autosuggest__input", so it will be included. If not, add ".date-input".
       const inputs = Array.from(
-        container.querySelectorAll('.react-autosuggest__input, .date-input')
+        container.querySelectorAll<HTMLInputElement>('.react-autosuggest__input, .date-input')
       ).filter((el) => !el.disabled && el.offsetParent !== null); // skip disabled/hidden
 
       const idx = inputs.indexOf(target);

@@ -119,7 +119,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
       // We target all navigable inputs. Your DatePicker input already has
       // "react-autosuggest__input", so it will be included. If not, add ".date-input".
       const inputs = Array.from(
-        container.querySelectorAll('.react-autosuggest__input, .date-input')
+        container.querySelectorAll<HTMLInputElement>('.react-autosuggest__input, .date-input')
       ).filter((el) => !el.disabled && el.offsetParent !== null); // skip disabled/hidden
 
       const idx = inputs.indexOf(target);
@@ -139,8 +139,14 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     this.props.onClick?.(event, this.state.value, this.state.suggestions);
   };
 
-  extractSingle(suggestions, field) {
-    let values = [];
+  // Suggestions for the AUTHOR / VENUE / KEYWORD bars are the distinct values
+  // of that field (one entry per author, not per paper), so each stand-in
+  // carries only `field`. They are typed as Paper to keep one suggestion type:
+  // only `field` and `suggestionValue` are ever read from them, and the one
+  // caller that uses the suggestion list as papers (Home) uses a TITLE bar,
+  // which always suggests full papers.
+  extractSingle(suggestions: Paper[], field: string): Paper[] {
+    let values: string[] = [];
     for (const paper of suggestions) {
       values = values.concat(
         String(paper[field] || '')
@@ -149,7 +155,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
           .filter(Boolean)
       );
     }
-    return Array.from(new Set(values)).map((value) => ({ [field]: value }));
+    return Array.from(new Set(values)).map((value) => ({ [field]: value }) as unknown as Paper);
   }
 
   getSuggestions = (value) => {
@@ -218,7 +224,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
             onClick={(event) => {
               event.preventDefault();
               this.setState({ value: '', suggestions: papers });
-              this.props.onClick?.(event, '', '');
+              this.props.onClick?.(event, '', papers);
             }}
           />
           <input {...rest} />
