@@ -10,5 +10,5 @@
   "SITE": "",
   "CODE": "https://github.com/fzi-forschungszentrum-informatik/semantic_scene_forests",
   "VIDEO": "",
-  "BIBTEX": "@misc{oberacker2026pixelsconceptsgrowingrich,\n      title={From Pixels to Concepts: Growing Rich 3D Semantic Scene Graph Forests utilizing Foundation Models}, \n      author={David Oberacker and Meike Deitersen and Niklas Spielbauer and Tristan Schnell and Georg Heppner and Arne Roennau},\n      year={2026},\n      eprint={2606.23312},\n      archivePrefix={arXiv},\n      primaryClass={cs.RO},\n      url={https://arxiv.org/abs/2606.23312}, \n}"
+  "BIBTEX": "@inproceedings{oberacker2026pixelsconceptsgrowingrich,\n  title = {From Pixels to Concepts: Growing Rich 3D Semantic Scene Graph Forests utilizing Foundation Models},\n  author = {Oberacker, David and Deitersen, Meike and Spielbauer, Niklas and Schnell, Tristan and Heppner, Georg and Roennau, Arne},\n  booktitle = {IEEE/RSJ Intl. Conf. on Intelligent Robots and Systems (IROS)},\n  year = {2026}\n}"
 }
